@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('milestone-0/sqlTest.db')
+conn = sqlite3.connect('sqlTest.db')
 cursor = conn.cursor()
 
 deleteQuery = "DROP TABLE IF EXISTS TESTDB"
