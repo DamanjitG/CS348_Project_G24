@@ -44,10 +44,11 @@ createUsersTable = """ CREATE TABLE Users (
             """
 cursor.execute(createUsersTable)
 
+# No uid is provided as it will automatically be assigned UNIQUE values
 insertUsers = """
-        INSERT INTO Users (uid, username, password) VALUES
-        (1, 'user1', 'user1pass'),
-        (2, 'user2', 'user2pass');
+        INSERT INTO Users (username, password) VALUES
+        ('user1', 'user1pass'),
+        ('user2', 'user2pass'); 
 """
 
 cursor.execute(insertUsers)
