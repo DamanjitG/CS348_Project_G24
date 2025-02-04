@@ -38,7 +38,7 @@ cursor.execute(insertQuery2)
 cursor.execute("DROP TABLE IF EXISTS Users")
 createUsersTable = """ CREATE TABLE Users (
                         uid INTEGER PRIMARY KEY AUTOINCREMENT,
-                        username VARCHAR(20) NOT NULL,
+                        username VARCHAR(20) UNIQUE NOT NULL,
                         password VARCHAR(20) NOT NULL
                 );
             """
