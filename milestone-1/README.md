@@ -18,6 +18,6 @@ First, make sure your current directory is the milestone-1 folder, not the root 
 
  `python queryDB.py`
 
- to execute some sample queries and see the results.
+ to execute some quick sample queries and see the results. The first query selects all user data, the second query selects name, position and team for players under the age of 25, and the third query selects the maximum age of any player.
 
  

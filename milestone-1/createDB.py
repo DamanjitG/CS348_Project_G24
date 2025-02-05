@@ -22,8 +22,8 @@ player_stats = player_stats.drop(rows_to_drop).reset_index(drop=True)
 # Drop players who have played less than five games
 player_stats = player_stats.loc[player_stats["G"] >= 5]
 
-# Add uid column (value is null for real players, but used for custom players)
-player_stats["uid"] = np.nan
+# Add creator column (value is null for real players, but used for custom players)
+player_stats["creator"] = np.nan
 
 # make all columns lowercase
 columns_renamed = {x:x.lower() for x in list(player_stats.columns)}
@@ -37,7 +37,7 @@ columns_renamed["3PA"] = "threepta"
 player_stats.rename(columns=columns_renamed, inplace=True)
 
 
-conn = sqlite3.connect('sqlTest.db')
+conn = sqlite3.connect('m1.db')
 cursor = conn.cursor()
 
 positions=["\'PG\'","\'SG\'","\'SF\'","\'PF\'","\'C\'"]
@@ -79,8 +79,6 @@ createPlayersTable = f""" CREATE TABLE players (
                     FOREIGN KEY(creator) REFERENCES users(username)
                 );
               """
-              
-embed()
 
 cursor.execute(deletePlayersTable)
 cursor.execute(deleteUsersTable)
@@ -90,21 +88,17 @@ conn.commit()
 
 # At this point the database has been created with tables
 
-conn = sqlite3.connect('m1.db')
-cursor = conn.cursor()
+# Insert player stats from the CSV
+player_stats.to_sql(name="players", con=conn, schema="m1", if_exists="append", index=False)
+conn.commit()
 
-cursor.execute(insertQuery1)
-cursor.execute(insertQuery2)
-
-
+# Insert sample data for users
 insertUsers = """
         INSERT INTO users (username, password) VALUES
         ('user1', 'user1pass'),
         ('user2', 'user2pass'); 
 """
-
 cursor.execute(insertUsers)
-
 conn.commit()
 
 # Close the cursor
