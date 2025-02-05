@@ -3,9 +3,9 @@ import sqlite3
 conn = sqlite3.connect('sqlTest.db')
 cursor = conn.cursor()
 
-query1 = """ SELECT * FROM TESTDB; """
-query2 = """ SELECT name, dob FROM TESTDB WHERE age > 30; """
-query3 = """ SELECT MAX(age) FROM TESTDB """
+query1 = """ SELECT * FROM users; """
+query2 = """ SELECT name, pos, team FROM players WHERE age < 25; """
+query3 = """ SELECT MAX(age) FROM players """
 
 # should return both rows
 query1Output = cursor.execute(query1).fetchall()

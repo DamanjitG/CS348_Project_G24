@@ -40,7 +40,7 @@ player_stats.rename(columns=columns_renamed, inplace=True)
 conn = sqlite3.connect('sqlTest.db')
 cursor = conn.cursor()
 
-positions=["PG","SG","SF","PF","C"]
+positions=["\'PG\'","\'SG\'","\'SF\'","\'PF\'","\'C\'"]
 
 deleteUsersTable = "DROP TABLE IF EXISTS users"
 deletePlayersTable = "DROP TABLE IF EXISTS players"
@@ -79,13 +79,16 @@ createPlayersTable = f""" CREATE TABLE players (
                     FOREIGN KEY(creator) REFERENCES users(username)
                 );
               """
+              
+embed()
 
 cursor.execute(deletePlayersTable)
 cursor.execute(deleteUsersTable)
 cursor.execute(createUsersTable)
 cursor.execute(createPlayersTable)
-
 conn.commit()
+
+# At this point the database has been created with tables
 
 # Close the cursor
 cursor.close()
