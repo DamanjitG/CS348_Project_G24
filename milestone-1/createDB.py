@@ -90,6 +90,23 @@ conn.commit()
 
 # At this point the database has been created with tables
 
+conn = sqlite3.connect('m1.db')
+cursor = conn.cursor()
+
+cursor.execute(insertQuery1)
+cursor.execute(insertQuery2)
+
+
+insertUsers = """
+        INSERT INTO users (username, password) VALUES
+        ('user1', 'user1pass'),
+        ('user2', 'user2pass'); 
+"""
+
+cursor.execute(insertUsers)
+
+conn.commit()
+
 # Close the cursor
 cursor.close()
 conn.close()
