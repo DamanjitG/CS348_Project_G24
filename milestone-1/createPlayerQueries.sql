@@ -9,4 +9,5 @@ DELETE FROM Players
 WHERE Players.name = '' AND Players.uid IS NOT NULL 
 --should probably show the users a list of players 
 -- and get the metadata that way (from FE)?
--- How do we join pid with uid?
+-- How do we join pid with uid? 
+-- NOT FINISHED!!
