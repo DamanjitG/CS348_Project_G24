@@ -20,4 +20,5 @@ First, make sure your current directory is the milestone-1 folder, not the root 
 
  to execute some quick sample queries and see the results. The first query selects all user data, the second query selects name, position and team for players under the age of 25, and the third query selects the maximum age of any player.
 
+As an additional convenience, you can run `runSQL.py xyz.sql` to execute the query in xyz.sql and show the results. You can try this out with `runSQL.py lebronTest.sql`. Note however that *this only works if there is a single query in the sql file, and does NOT work if the .sql file contains multiple queries.*
  

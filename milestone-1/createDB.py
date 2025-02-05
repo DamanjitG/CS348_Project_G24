@@ -77,7 +77,14 @@ if __name__ == "__main__":
                         pf DOUBLE,
                         pts DOUBLE,
                         creator VARCHAR(20),
-                        FOREIGN KEY(creator) REFERENCES users(username)
+                        FOREIGN KEY(creator) REFERENCES users(username),
+                        CHECK (trb IS NULL OR orb+drb > trb - 0.2 AND orb+drb < trb + 0.2)
+                        CHECK (threepta IS NULL OR threepta >= threept)
+                        CHECK (fta IS NULL OR (fta >= ft))
+                        CHECK (fga IS NULL OR (fga >= fg))
+                        CHECK (fgp IS NULL OR (fgp <= 100 AND fgp >= 0))
+                        CHECK (efgp IS NULL OR (efgp <= 100 AND efgp >= 0))
+                        CHECK (ftp IS NULL OR ftp <= 100 AND ftp >= 0)
                     );
                 """
 
