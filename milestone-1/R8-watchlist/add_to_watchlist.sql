@@ -1,1 +1,2 @@
-INSERT INTO watchlist (username, pid) VALUES (:username, :pid);
+INSERT INTO watchlist (username, watchlist_name, pid)
+VALUES (:username, :watchlist_name, :pid);

@@ -7,7 +7,12 @@ class Parameter:
         self.type = param_type
 
 
-PARAM_SCHEMA = {"username": Parameter("username", str), "pid": Parameter("pid", int)}
+PARAM_SCHEMA = {
+    "username": Parameter("username", str),
+    "watchlist_name": Parameter("watchlist_name", str),
+    "pid": Parameter("pid", int),
+}
+
 
 def parse_params(args):
     params = {}
