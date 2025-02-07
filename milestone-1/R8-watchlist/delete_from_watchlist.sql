@@ -1,2 +1,2 @@
 DELETE FROM watchlist
-WHERE username = :username AND pid = :pid;
+WHERE username = :username AND watchlist_name = :watchlist_name AND pid = :pid;
