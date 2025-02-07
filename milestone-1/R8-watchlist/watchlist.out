@@ -1,0 +1,71 @@
+Watchlist Sample Queries
+
+Create user_watchlists table
+Rows affected: -1
+
+Create watchlist table
+Rows affected: -1
+
+Add watchlist1 for user1
+Rows affected: 1
+
+Add player 1 to watchlist1 for user1
+Rows affected: 1
+
+Get watchlist1 for user1
+name
+Shai Gilgeous-Alexander
+
+Add player 2 to watchlist1 for user1
+Rows affected: 1
+
+Get watchlist1 for user1 after adding player 2
+name
+Shai Gilgeous-Alexander
+Giannis Antetokounmpo
+
+Add watchlist2 for user1
+Rows affected: 1
+
+Add player 77 to watchlist2 for user1
+Rows affected: 1
+
+Get watchlist2 for user1
+name
+OG Anunoby
+
+Get watchlist1 for user1 (again)
+name
+Shai Gilgeous-Alexander
+Giannis Antetokounmpo
+
+Get watchlist2 for user1 (again)
+name
+OG Anunoby
+
+Add player 3 to watchlist1 for user2
+Rows affected: 1
+
+Add player 4 to watchlist1 for user2
+Rows affected: 1
+
+Get new_watchlist1 for user2
+No rows returned
+
+Add repeat_watchlist_name for user1
+Rows affected: 1
+
+Add repeat_watchlist_name for user2
+Rows affected: 1
+
+Get watchlist1 for user1 before deletion
+name
+Shai Gilgeous-Alexander
+Giannis Antetokounmpo
+
+Delete player 1 from watchlist1 for user1
+Rows affected: 1
+
+Get watchlist1 for user1 after deletion
+name
+Giannis Antetokounmpo
