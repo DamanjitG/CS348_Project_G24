@@ -1,0 +1,20 @@
+-- Sample Query 1: 
+Query executed successfully
+Rows affected: 1
+
+-- Sample Query 2: 
+Query returned 2 row(s)
+pid, name, age, team, pos, g, mp, fg, fga, fgp, threept, threepta, efgp, ft, fta, ftp, orb, drb, trb, ast, stl, blk, tov, pf, pts, creator
+(1000, 'Luka Lakers', 25, 'LAL', 'SG', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 42.0, 'DataBaseLover')
+(1001, 'Luka Lakers', 25, 'LAL', 'SG', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 42.0, 'DataBaseLover')
+
+-- Sample Query 3: 
+Query returned 2 row(s)
+pid, name, age, team, pos, g, mp, fg, fga, fgp, threept, threepta, efgp, ft, fta, ftp, orb, drb, trb, ast, stl, blk, tov, pf, pts, creator
+(1000, 'Luka Lakers', 25, 'LAL', 'SG', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 42.0, 'DataBaseLover')
+(1001, 'Luka Lakers', 25, 'LAL', 'SG', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 42.0, 'DataBaseLover')
+
+-- Sample Query 4: 
+Query returned 1 row(s)
+pid, name, age, team, pos, g, mp, fg, fga, fgp, threept, threepta, efgp, ft, fta, ftp, orb, drb, trb, ast, stl, blk, tov, pf, pts, creator
+(1000, 'Luka Lakers', 25, 'LAL', 'SG', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 42.0, 'DataBaseLover')
