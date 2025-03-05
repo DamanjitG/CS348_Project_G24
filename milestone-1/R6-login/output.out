@@ -1,0 +1,8 @@
+-- Sample Query1:
+Query executed successfully
+Rows affected: 1
+
+-- Sample Query2:
+Query returned 1 row(s)
+username, password
+('DataBaseLovers', 'DataBasePassword123!')
