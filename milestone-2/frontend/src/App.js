@@ -7,7 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './components/Navbar';
 
 // Pages
-// import Watchlist from './pages/Watchlist';
+import Watchlist from './pages/Watchlist';
 import Home from './pages/Home';
 
 const theme = createTheme({
@@ -29,7 +29,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/watchlist" element={<Watchlist />} /> */}
+          <Route path="/watchlist" element={<Watchlist />} />
         </Routes>
       </div>
     </ThemeProvider>
