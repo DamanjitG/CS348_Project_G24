@@ -41,6 +41,9 @@ def initialize_db(conn):
 
     deleteUsersTable = "DROP TABLE IF EXISTS users"
     deletePlayersTable = "DROP TABLE IF EXISTS players"
+    deleteUserWatchlistsTable = "DROP TABLE IF EXISTS user_watchlists"
+    deleteWatchlistTable = "DROP TABLE IF EXISTS watchlist"
+
     createUsersTable = """ CREATE TABLE users (
                             username VARCHAR(20) PRIMARY KEY NOT NULL,
                             password VARCHAR(20) NOT NULL
@@ -84,11 +87,37 @@ def initialize_db(conn):
                         CHECK (ftp IS NULL OR ftp <= 100 AND ftp >= 0)
                     );
                 """
+    
+    createUserWatchlistsTable = """
+    CREATE TABLE IF NOT EXISTS user_watchlists (
+      username VARCHAR(20) NOT NULL,
+      watchlist_name VARCHAR(20) NOT NULL,
+      PRIMARY KEY (username, watchlist_name),
+      FOREIGN KEY (username) REFERENCES users(username)
+    );
+    """
+
+    # Create watchlist table.
+    createWatchlistTable = """
+    CREATE TABLE IF NOT EXISTS watchlist (
+      username VARCHAR(20) NOT NULL,
+      watchlist_name VARCHAR(20) NOT NULL,
+      pid INTEGER NOT NULL,
+      PRIMARY KEY (username, watchlist_name, pid),
+      FOREIGN KEY (username, watchlist_name) REFERENCES user_watchlists(username, watchlist_name),
+      FOREIGN KEY (pid) REFERENCES players(pid)
+    );
+    """
 
     conn.execute(deletePlayersTable)
     conn.execute(deleteUsersTable)
     conn.execute(createUsersTable)
     conn.execute(createPlayersTable)
+
+    conn.execute(deleteUserWatchlistsTable)
+    conn.execute(deleteWatchlistTable)
+    conn.execute(createUserWatchlistsTable)
+    conn.execute(createWatchlistTable)
 
     # At this point the database has been created with tables
 
