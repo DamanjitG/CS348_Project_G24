@@ -50,7 +50,7 @@ outputFile.close()
 cursor.close()
 conn.close()
 
-conn = sqlite3.connect('../g24_db.sqlite')
+conn = sqlite3.connect('../PRODUCTIONDB.sqlite')
 cursor = conn.cursor()
 
 outputFile = open('./production.out', 'w', encoding="utf-8")
