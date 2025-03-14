@@ -8,7 +8,7 @@ frontend contains all of the code relating to the frontend of the application.
 
 SQL contains all of the SQL queries and testing for our features. Each feature has its own folder, in which you can find the queries, as well as the output with sample and production data. Note that this folder contains two database files, SAMPLEDB.sqlite and PRODUCTIONDB.sqlite. These files represent the version of the database that all the queries were ran against - coming directly from our data.
 
-If you would like to generate your own sample or production databases, follow the instructions below.
+When running the application, you must generate a fresh production database first - these databases are not for the application itself. Please see below for instructions on setting up the application and database, or to generate your own sample database if desired.
 
 # Milestone 2 Application Setup
 
