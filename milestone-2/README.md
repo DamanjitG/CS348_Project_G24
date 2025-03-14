@@ -38,7 +38,18 @@ The console output will tell you the port the server is running on.
 
 ## Frontend
 
-# TODO
+Note: for the frontend to work properly, the backend must already be running.
+
+Change your current directory to the frontend folder within milestone-2.
+
+`cd frontend` if you're already in the milestone-2 folder, or `cd milestone-2/frontend` if you're in the root of the repo.
+
+Install the packages with node package manager (npm) and start the development server:
+
+`npm install && npm run start`
+
+The website (interface) will be available locally on http://localhost:3000/.
+
 
 ## Sample Database
 
