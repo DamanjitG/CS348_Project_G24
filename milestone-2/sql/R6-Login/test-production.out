@@ -1,0 +1,21 @@
+-- Registering user insert:
+Query executed successfully
+Rows affected: 1
+
+-- Registering user2 insert:
+Query executed successfully
+Rows affected: 1
+
+-- Registering user3 insert:
+Query executed successfully
+Rows affected: 1
+
+-- Login and find valid user with username and password
+Query returned 1 row(s)
+username, password
+('DataBaseLover123', 'DataBasePassword123!')
+
+-- Get password for a user
+Query returned 1 row(s)
+password
+('Password123!')
