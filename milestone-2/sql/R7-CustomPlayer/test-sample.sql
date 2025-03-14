@@ -30,7 +30,7 @@ VALUES (
     3,                     
     2,                     
     42,                     
-    'DataBaseLover'         
+    'DataBaseLover123'         
 );
 
 -- Returns all custom players

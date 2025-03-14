@@ -13,10 +13,9 @@ VALUES ('DataBase123', 'Password123!');
 -- Login and find valid user with username and password:
 SELECT *
 FROM users
-WHERE username = 'DataBaseLover' AND password = 'DataBasePassword123!';
+WHERE username = 'DataBaseLover123' AND password = 'DataBasePassword123!';
 
 -- Get password for a user
 SELECT password
 FROM users
 WHERE username = 'DataBase123'
--
