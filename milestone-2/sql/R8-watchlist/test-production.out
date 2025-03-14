@@ -1,0 +1,126 @@
+-- Query all existing users
+username
+---------
+AaronAndrews
+BobbyBrown
+TestUser
+
+-- Query all existing watchlists
+username       watchlist_name
+--------------  --------------
+AaronAndrews   My Players
+AaronAndrews   New Watchlist
+AaronAndrews   WatchList2
+BobbyBrown     Point Guards
+BobbyBrown     Trade Targets
+
+-- Query AaronAndrews' watchlists
+watchlist_name
+--------------
+My Players
+New Watchlist
+WatchList2
+
+-- Query BobbyBrown's watchlists
+watchlist_name
+--------------
+Point Guards
+Trade Targets
+
+-- Get players in AaronAndrews' 'My Players' watchlist
+pid  name             team  pos  pts    ast    trb
+---  ---------------  ----  ---  -----  -----  -----
+1    LeBron James     LAL   SF   25.7   7.3    7.8
+10   Stephen Curry    GSW   PG   29.4   6.3    5.5
+14   Kevin Durant     PHX   SF   27.1   5.0    6.7
+19   Giannis A.       MIL   PF   29.9   5.8    11.6
+23   Luka Doncic      DAL   PG   32.4   8.0    8.6
+
+-- Get players in AaronAndrews' 'WatchList2' watchlist
+pid  name             team  pos  pts    ast    trb
+---  ---------------  ----  ---  -----  -----  -----
+11   Klay Thompson    GSW   SG   17.9   2.3    3.3
+12   Draymond Green   GSW   PF   8.5    6.8    7.2
+2    Anthony Davis    LAL   PF   25.9   2.6    12.5
+
+-- Get players in BobbyBrown's 'Trade Targets' watchlist
+pid  name             team  pos  pts    ast    trb
+---  ---------------  ----  ---  -----  -----  -----
+3    Russell Westbrook LAC   PG   15.6   7.5    5.7
+6    Damian Lillard   MIL   PG   26.3   7.2    4.4
+10   Stephen Curry    GSW   PG   29.4   6.3    5.5
+
+-- Get players in BobbyBrown's 'Point Guards' watchlist
+pid  name             team  pos  pts    ast    trb
+---  ---------------  ----  ---  -----  -----  -----
+4    Chris Paul       GSW   PG   8.3    6.8    3.9
+13   Trae Young       ATL   PG   26.1   10.8   2.8
+17   Ja Morant        MEM   PG   25.1   8.1    5.6
+29   Kyrie Irving     DAL   PG   25.6   5.1    4.8
+
+-- Get statistics for AaronAndrews' 'My Players' watchlist
+avg_points  avg_assists  avg_rebounds  player_count
+----------  -----------  ------------  ------------
+28.9        6.48         8.04          5
+
+-- Get statistics for BobbyBrown's 'Point Guards' watchlist
+avg_points  avg_assists  avg_rebounds  player_count
+----------  -----------  ------------  ------------
+21.28       7.7          4.28          4
+
+-- Add a new player to AaronAndrews' 'New Watchlist'
+(1 row affected)
+
+-- Check AaronAndrews' 'New Watchlist' after addition
+pid  name             team  pos  pts    ast    trb
+---  ---------------  ----  ---  -----  -----  -----
+5    James Harden     LAC   SG   21.0   7.9    5.1
+
+-- Remove a player from AaronAndrews' 'My Players' watchlist
+(1 row affected)
+
+-- Check AaronAndrews' 'My Players' watchlist after removal
+pid  name             team  pos  pts    ast    trb
+---  ---------------  ----  ---  -----  -----  -----
+10   Stephen Curry    GSW   PG   29.4   6.3    5.5
+14   Kevin Durant     PHX   SF   27.1   5.0    6.7
+19   Giannis A.       MIL   PF   29.9   5.8    11.6
+23   Luka Doncic      DAL   PG   32.4   8.0    8.6
+
+-- Create a new watchlist for TestUser
+(1 row affected)
+
+-- Add players to TestUser's new watchlist
+(1 row affected)
+
+(1 row affected)
+
+-- Check TestUser's watchlist
+pid  name             team  pos  pts    ast    trb
+---  ---------------  ----  ---  -----  -----  -----
+7    Joel Embiid      PHI   C    33.1   4.2    10.2
+8    Nikola Jokic     DEN   C    24.5   9.8    11.8
+
+-- Count players in each watchlist
+username       watchlist_name  player_count
+--------------  -------------  ------------
+AaronAndrews   My Players     4
+AaronAndrews   New Watchlist  1
+AaronAndrews   WatchList2     3
+BobbyBrown     Point Guards   4
+BobbyBrown     Trade Targets  3
+TestUser       Test Watchlist 2
+
+-- Find position distribution across all watchlists
+pos  count
+---  -----
+PG   8
+SF   3
+PF   3
+SG   2
+C    2
+
+-- Delete TestUser's watchlist (cleanup)
+(2 rows affected)
+
+(1 row affected)
