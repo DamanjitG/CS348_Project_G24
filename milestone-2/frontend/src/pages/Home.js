@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Link as RouterLink } from "react-router-dom";
 import {
   Typography,
   Paper,
@@ -12,7 +11,17 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  IconButton,
+  Icon,
 } from "@mui/material";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import SortIcon from "@mui/icons-material/Sort";
 
 import { getPlayersTable } from "../services/api";
 
@@ -49,7 +58,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchPlayerTable();
-  }, [fetchPlayerTable, playerSearch, posFilter, orderByCol, dir]);
+  }, [fetchPlayerTable]);
 
   if (loading) {
     return (
@@ -64,6 +73,32 @@ const Home = () => {
         Welcome to FantasyBasketball++ ᕙ(▀̿ĺ̯▀̿ ̿)ᕗ
       </Typography>
 
+      <TextField
+        autoFocus
+        margin="dense"
+        label="Find Players"
+        type="text"
+        fullWidth
+        variant="outlined"
+        value={playerSearch}
+        onChange={(e) => setPlayerSearch(e.target.value)}
+      />
+      <FormControl fullWidth margin="dense">
+        <InputLabel>Position</InputLabel>
+        <Select
+          value={posFilter}
+          label="Position"
+          onChange={(e) => setPosFilter(e.target.value)}
+        >
+          <MenuItem value={""}>Any</MenuItem>
+          <MenuItem value={"PG"}>Point Guard</MenuItem>
+          <MenuItem value={"SG"}>Shooting Guard</MenuItem>
+          <MenuItem value={"SF"}>Small Forward</MenuItem>
+          <MenuItem value={"PF"}>Power Forward</MenuItem>
+          <MenuItem value={"C"}>Center</MenuItem>
+        </Select>
+      </FormControl>
+
       {playerdata.length === 0 ? (
         <Paper sx={{ p: 3, textAlign: "center" }}>
           <Typography variant="body1">No players.</Typography>
@@ -77,15 +112,213 @@ const Home = () => {
                 <TableCell>Team</TableCell>
                 <TableCell>Position</TableCell>
                 <TableCell align="right">MP</TableCell>
-                <TableCell align="right">FGM</TableCell>
-                <TableCell align="right">3PM</TableCell>
-                <TableCell align="right">RPG</TableCell>
-                <TableCell align="right">APG</TableCell>
-                <TableCell align="right">SPG</TableCell>
-                <TableCell align="right">BPG</TableCell>
-                <TableCell align="right">TOV</TableCell>
-                <TableCell align="right">PPG</TableCell>
-                <TableCell align="right">Fantasy</TableCell>
+                <TableCell align="right">
+                  <>FGM</>
+                  {orderByCol !== "fg" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("fg");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "fg" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "fg" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
+                <TableCell align="right">
+                  <>3PM</>
+                  {orderByCol !== "threept" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("threept");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "threept" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "threept" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
+                <TableCell align="right">
+                  <>RPG</>
+                  {orderByCol !== "trb" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("trb");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "trb" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "trb" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
+                <TableCell align="right">
+                  <>APG</>
+                  {orderByCol !== "ast" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("ast");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "ast" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "ast" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
+                <TableCell align="right">
+                  <>SPG</>
+                  {orderByCol !== "stl" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("stl");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "stl" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "stl" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
+                <TableCell align="right">
+                  <>BPG</>
+                  {orderByCol !== "blk" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("blk");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "blk" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "blk" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
+                <TableCell align="right">
+                  <>TOV</>
+                  {orderByCol !== "tov" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("tov");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "tov" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "tov" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
+                <TableCell align="right">
+                  <>PPG</>
+                  {orderByCol !== "pts" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("pts");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "pts" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "pts" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
+                <TableCell align="right">
+                  <>Fantasy</>
+                  {orderByCol !== "fantasy" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("fantasy");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "fantasy" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "fantasy" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
