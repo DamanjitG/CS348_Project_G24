@@ -20,7 +20,7 @@ LIMIT 10;
 conn = sqlite3.connect('../SAMPLEDB.sqlite')
 cursor = conn.cursor()
 
-outputFile = open('./sample.out', 'w', encoding="utf-8")
+outputFile = open('./test-sample.out', 'w', encoding="utf-8")
 outputFile.write("Most Watched Players Sample Output \n")
 queries = [query1, query2]
 
@@ -42,7 +42,7 @@ conn.close()
 conn = sqlite3.connect('../PRODUCTIONDB.sqlite')
 cursor = conn.cursor()
 
-outputFile = open('./production.out', 'w', encoding="utf-8")
+outputFile = open('./test-production.out', 'w', encoding="utf-8")
 outputFile.write("Most Watched Players Production Output \n")
 queries = [query1,query2]
 

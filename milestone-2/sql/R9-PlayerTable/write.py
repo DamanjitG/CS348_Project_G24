@@ -31,7 +31,7 @@ order by ast desc;
 conn = sqlite3.connect('../SAMPLEDB.sqlite')
 cursor = conn.cursor()
 
-outputFile = open('./sample.out', 'w', encoding="utf-8")
+outputFile = open('./test-sample.out', 'w', encoding="utf-8")
 outputFile.write("Player Table View Sample Output \n")
 queries = [query1, query2, query3, query4]
 
@@ -53,7 +53,7 @@ conn.close()
 conn = sqlite3.connect('../PRODUCTIONDB.sqlite')
 cursor = conn.cursor()
 
-outputFile = open('./production.out', 'w', encoding="utf-8")
+outputFile = open('./test-production.out', 'w', encoding="utf-8")
 outputFile.write("Player Table View Production Output \n")
 queries = [query1, query2, query3, query4]
 
