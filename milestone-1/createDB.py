@@ -1,5 +1,4 @@
 import sqlite3, pandas as pd, numpy as np
-from IPython import embed
 
 if __name__ == "__main__":
     player_stats = pd.read_csv("playerStats.csv")

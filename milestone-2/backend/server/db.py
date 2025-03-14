@@ -1,7 +1,6 @@
 import sqlite3
 from datetime import datetime
 
-import IPython
 import click
 from flask import current_app, g
 
