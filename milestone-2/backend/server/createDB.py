@@ -1,5 +1,4 @@
-import sqlite3, pandas as pd, numpy as np
-from IPython import embed
+import pandas as pd, numpy as np
 
 def initialize_db(conn, sample=False):
     player_stats = pd.read_csv("playerStats.csv")

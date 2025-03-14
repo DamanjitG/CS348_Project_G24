@@ -2,7 +2,7 @@
 
 Our project submission consists of three folders - backend, frontend, and SQL.
 
-backend contains all of the code relating to creating the production and sample databases and setting up the backend of the application.
+backend contains all of the code relating to creating the production and sample databases and setting up the backend server of the application.
 
 frontend contains all of the code relating to the frontend of the application.
 
@@ -12,29 +12,33 @@ When running the application, you must generate a fresh production database firs
 
 # Milestone 2 Application Setup
 
-You will need Python installed in order to run the code for milestone 2.
-
-To begin, in the root directory, run
-
-`pip install -r requirements.txt`
+You will need Python and npm installed in order to run the code for milestone 2. The backend server is via Python (Flask), and the frontend is via Javascript (React).
 
 ## Backend & Production Database
 
-First, change your current directory to the backend folder within milestone-2.
+To begin, change your current directory to the backend folder within milestone-2.
 
-`cd backend`
+`cd backend` if you're already in the milestone-2 folder, or `cd milestone-2/backend` if you're in the root of the repo.
 
-This is where you run all the commands for the server.
+This is where you run all the commands for the server/backend.
 
-To create and populate the database, run
+First, install the requirements:
 
-`flask --app server init-db`
+`pip install -r requirements.txt`
+
+Then, to create and populate the database, run
+
+`python -m flask --app server init-db`
 
 Then, to start the server, run
 
-`flask --app server run`
+`python -m flask --app server run`
 
 The console output will tell you the port the server is running on.
+
+## Frontend
+
+# TODO
 
 ## Sample Database
 
