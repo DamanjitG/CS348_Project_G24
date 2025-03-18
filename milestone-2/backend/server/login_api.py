@@ -23,7 +23,7 @@ def login():
     cursor = connection.cursor()
 
     query = "SELECT * FROM users WHERE username = ?"
-    cursor.execute(query, (username))
+    cursor.execute(query, (username,))
     loginUser = cursor.fetchone()
     userRow = dict_from_row(loginUser, cursor)
     cursor.close()
