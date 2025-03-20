@@ -10,6 +10,7 @@ import LoginCard from './pages/Login';
 // Pages
 import Watchlist from './pages/Watchlist';
 import Home from './pages/Home';
+import CustomPlayerForm from './pages/CustomPlayer';
 
 const theme = createTheme({
   palette: {
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginCard />} />
+          <Route path="/custom" element={<CustomPlayerForm />} />
           <Route path="/watchlist" element={<Watchlist />} />
         </Routes>
       </div>
