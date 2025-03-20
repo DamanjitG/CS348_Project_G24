@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { Typography, Paper, Button, Box, TextField } from "@mui/material";
 import { loginUser } from "../services/auth";
 
-const LoginCard = () => {
+const LoginCard = ( { setUser }) => {
 
 
   const [username, setUsername] = useState("");
@@ -17,7 +17,8 @@ const LoginCard = () => {
     e.preventDefault();
     const getLoginResult = await loginUser(username, password);
     if (getLoginResult.success){
-      console.log("Login success", getLoginResult.user)
+      console.log("Login success", getLoginResult.user);
+      setUser(getLoginResult.user);
       nav("/")
     } else{
       console.log("Login failed", getLoginResult.error)

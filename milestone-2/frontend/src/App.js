@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -23,15 +23,18 @@ const theme = createTheme({
 });
 
 function App() {
+
+  const [user, setUser] = useState(null);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginCard />} />
-          <Route path="/watchlist" element={<Watchlist />} />
+          <Route path="/" element={<Home  user={user} />} />
+          <Route path="/login" element={<LoginCard setUser={setUser}/>} />
+          <Route path="/watchlist" element={<Watchlist user={user} />} />
         </Routes>
       </div>
     </ThemeProvider>
