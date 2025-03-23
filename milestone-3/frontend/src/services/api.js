@@ -1,14 +1,19 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: "http://localhost:5001/api",
   headers: {
     "Content-Type": "application/json",
-  },
+    "Accept": "application/json"
+  }
 });
 
 const playersApi = axios.create({
-  baseURL: "/",
+  baseURL: "http://localhost:5001",
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  }
 });
 
 export const getUserWatchlist = async (username, watchlistName) => {
@@ -97,8 +102,8 @@ export const getPlayersTable = async (player, position, column, dir) => {
   try {
     const response = await playersApi.get("/players", {
       params: {
-        players: player != "" ? player : "",
-        position: position != "" ? position : "",
+        players: player !== "" ? player : "",
+        position: position !== "" ? position : "",
         column: column ?? "",
         dir: dir ?? "",
       },

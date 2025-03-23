@@ -32,7 +32,7 @@ Then, to create and populate the database, run
 
 Then, to start the server, run
 
-`python -m flask --app server run`
+`python -m flask --app server run --port=5001`
 
 The console output will tell you the port the server is running on.
 
