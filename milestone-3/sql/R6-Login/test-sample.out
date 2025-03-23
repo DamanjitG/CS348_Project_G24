@@ -1,0 +1,8 @@
+-- Registering user insert:
+Query executed successfully
+Rows affected: 1
+
+-- Login and find valid user with username and password:
+Query returned 1 row(s)
+username, password
+('DataBaseLovers', 'DataBasePassword123!')
