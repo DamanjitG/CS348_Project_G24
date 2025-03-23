@@ -74,6 +74,10 @@ def initialize_db(conn, sample=False):
 
     # At this point the database has been created with tables
 
+    conn.execute("CREATE INDEX idx_players_fantasy ON players(fantasy);")
+    conn.execute("CREATE INDEX idx_players_name ON players(name);")
+    conn.execute("CREATE INDEX idx_players_pos ON players(pos);")
+
     # Insert player stats from the CSV
     player_stats.to_sql(name="players", con=conn, schema="m1", if_exists="append", index=False)
 
