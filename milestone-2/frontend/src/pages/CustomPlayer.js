@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Typography, Paper, Button, Box, TextField } from "@mui/material";
-
+import { addCustomToPlayer } from "../services/custom";
 
 
 
@@ -9,22 +9,23 @@ import { Typography, Paper, Button, Box, TextField } from "@mui/material";
 
 const CustomPlayerForm = () => {
 
-    // const addCustomPlayer = async() => {
+    const addCustomPlayer = async (e) => {
+      e.preventDefault();
+      const getInsert = await addCustomToPlayer({cname, age, team, pos});
 
-    //     const getInsert = await insertCustomPlayer();
+        if (getInsert.success){
+          console.log("added player successfully")
+        } else {
+            console.error("failed to add custom player", getInsert.error)
+        }
 
-    //     if (getInsert.success){
-
-    //     } else {
-            
-    //     }
-
-    // }
+    }
 
 
     const [cname, setcname] = useState("");
     const [age, setAge] = useState("");
     const [team, setTeam] = useState("");
+    const [pos, setPos] = useState("");
 
   return (
     <Paper
@@ -37,7 +38,7 @@ const CustomPlayerForm = () => {
 
 
       {/* add back onSubmit={addCustomPlayer} */}
-      <Box component="form" noValidate autoComplete="off">
+      <Box component="form" noValidate autoComplete="off" onSubmit={addCustomPlayer}>
         <TextField id="cname" label="Enter a Name" variant="outlined"  value={cname}
           onChange={(e) => setcname(e.target.value)}
         />
@@ -45,8 +46,23 @@ const CustomPlayerForm = () => {
           onChange={(e) => setAge(e.target.value)}
         />
 
-        <TextField id="team" label="Enter a team" type="text" variant="outlined"   value={team}
+        <TextField id="team" label="Enter a team ie: LAL" type="text" variant="outlined"   value={team}
           onChange={(e) => setTeam(e.target.value)}
+          slotProps={{
+            htmlInput: {
+              maxLength: 3,
+              pattern: "[A-Za-z]*"
+            }
+          }}
+        />
+      <TextField id="pos" label="Enter a position" type="text" variant="outlined"   value={pos}
+          onChange={(e) => setPos(e.target.value)}
+          slotProps={{
+            htmlInput: {
+              maxLength: 2,
+              pattern: "[A-Za-z]*"
+            }
+          }}
         />
 
         <Button variant="outlined" color="primary" fullWidth sx={{ mt: 3 }} type="submit">

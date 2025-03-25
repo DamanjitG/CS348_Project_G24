@@ -7,14 +7,14 @@ const api = axios.create({
   },
 });
 
-//TODO: fix this function
+export const addCustomToPlayer = async (customData) => {
 
-// export const insertCustomPlayer = async (username, password) => {
-//     try {
-//       const response = await api.post('/custom', { username, password });
-//       return response.data;
-//     } catch (error) {
-//       console.error('Error logging in:', error);
-//       return { success: false, error: error.message };
-//     }
-//   };
+  try {
+    const response = await api.post("/custom", customData)
+    return response.data
+  } catch (error) {
+    console.log("addCustomToPlayer is not working")
+    return {success: false, error: error.message}
+  }
+
+}
