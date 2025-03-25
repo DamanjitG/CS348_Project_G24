@@ -52,6 +52,18 @@ const Navbar = () => {
 				>
 					Watchlists
 				</Button>
+				
+				<Button
+					color="inherit"
+					component={RouterLink}
+					to="/custom"
+					sx={{
+						mx: 1,
+						fontWeight: location.pathname === "/custom" ? "bold" : "normal",
+					}}
+				>
+					Custom Player
+				</Button>
 			</Toolbar>
 		</AppBar>
 	);

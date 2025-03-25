@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Watchlist from './pages/Watchlist';
 import Home from './pages/Home';
 import Login from './components/Login';
+import CustomPlayerForm from './pages/CustomPlayer';
 
 const theme = createTheme({
   palette: {
@@ -36,6 +37,7 @@ function App() {
           <div className='container'>
             <Routes>
               <Route path='/' element={<Home user={username} />} />
+              <Route path='/custom' element={<CustomPlayerForm username={username} />} />
               <Route path='/watchlist' element={<Watchlist username={username} />} />
             </Routes>
           </div>{' '}
