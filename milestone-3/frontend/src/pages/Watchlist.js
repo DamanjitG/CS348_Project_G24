@@ -36,9 +36,8 @@ import {
   getBestTeam,
 } from "../services/api";
 
-const Watchlist = () => {
+const Watchlist = ({ username }) => {
   // For demonstration/testing purposes
-  const username = "user1";
   const [watchlistName, setWatchlistName] = useState("watchlist1");
   const [availableWatchlists, setAvailableWatchlists] = useState([
     "watchlist1",
