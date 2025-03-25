@@ -1,0 +1,25 @@
+Player Table View Sample Output 
+Query 1 returned 1 row(s)
+name, team, age, pos, g, mp, fg, threept, trb, ast, stl, blk, tov, pts, fantasy
+Luka Dončić DAL 25 PG 22 35.7 9.8 3.4 8.3 7.8 2.0 0.4 3.4 28.1 None
+
+Query 2 returned 1 row(s)
+name, team, age, pos, g, mp, fg, threept, trb, ast, stl, blk, tov, pts, fantasy
+Luka Dončić DAL 25 PG 22 35.7 9.8 3.4 8.3 7.8 2.0 0.4 3.4 28.1 None
+
+Query 3 returned 2 row(s)
+name, team, age, pos, g, mp, fg, threept, trb, ast, stl, blk, tov, pts, fantasy
+Nikola Jokić DEN 29 C 44 36.4 11.2 2.0 12.9 10.3 1.8 0.7 3.1 29.5 None
+Nikola Vučević CHI 34 C 49 32.3 8.1 1.9 10.4 3.6 0.9 0.7 1.6 19.9 None
+
+Query 4 returned 8 row(s)
+name, team, age, pos, g, mp, fg, threept, trb, ast, stl, blk, tov, pts, fantasy
+Scottie Barnes TOR 23 PF 36 34.6 7.7 1.4 8.1 6.4 1.4 0.9 3.1 20.1 None
+Giannis Antetokounmpo MIL 30 PF 41 34.9 12.7 0.1 12.2 5.9 0.8 1.3 3.4 31.8 None
+Jayson Tatum BOS 26 PF 47 36.5 9.0 3.6 8.9 5.7 1.2 0.5 2.9 26.9 None
+Zion Williamson NOP 24 PF 14 28.5 8.7 0.1 8.0 5.0 1.1 1.2 3.1 22.9 None
+Paolo Banchero ORL 22 PF 17 33.8 8.0 1.6 7.5 4.8 0.7 0.7 3.3 22.5 None
+Kevin Durant PHO 36 PF 39 36.2 9.8 2.4 6.1 4.2 0.8 1.3 3.0 26.9 None
+Miles Bridges CHO 26 PF 33 32.1 7.2 2.0 7.8 3.8 0.7 0.6 2.1 19.6 None
+Pascal Siakam IND 30 PF 48 33.1 8.0 1.7 7.3 3.5 0.9 0.5 1.3 20.5 None
+

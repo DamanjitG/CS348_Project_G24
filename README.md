@@ -6,3 +6,5 @@ For setup instructions for Milestone 0, refer to the readme file within the mile
 For setup instructions for Milestone 1, refer to the readme file within the milestone-1 folder.
 
 For setup instructions for Milestone 2, refer to the readme file within the milestone-2 folder.
+
+For setup instructions for Milestone 3, refer to the readme file within the milestone-3 folder.

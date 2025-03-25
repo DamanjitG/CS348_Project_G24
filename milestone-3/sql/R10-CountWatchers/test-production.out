@@ -1,0 +1,27 @@
+Most Watched Players Production Output 
+Query 1 returned 10 row(s)
+top_players, total_watchers
+Devin Booker 2
+Shai Gilgeous-Alexander 1
+Giannis Antetokounmpo 1
+Nikola Jokić 1
+LaMelo Ball 1
+Tyrese Maxey 1
+Jalen Brunson 1
+Anthony Davis 1
+Cade Cunningham 1
+De'Aaron Fox 1
+
+Query 2 returned 10 row(s)
+top_players, total_watchers
+Shai Gilgeous-Alexander 1
+LaMelo Ball 1
+Tyrese Maxey 1
+Jalen Brunson 1
+Cade Cunningham 1
+De'Aaron Fox 1
+Trae Young 1
+Luka Dončić 0
+Damian Lillard 0
+Stephen Curry 0
+
