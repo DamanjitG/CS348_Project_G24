@@ -11,12 +11,19 @@ def add_custom_player():
     age = data.get("age")
     team = data.get("team")
     pos = data.get("pos")
+    gp = data.get("gp")
+    ppg = data.get("ppg")
+    ast = data.get("ast")
+    rpg = data.get("rpg")
+    spg = data.get("spg")
+    bpg = data.get("bpg")
+    tpg = data.get("tpg")
     try:
         connection = db.get_db()
         cursor = connection.cursor()
 
-        addCustomQuery = "INSERT INTO players (name, age, team, pos) VALUES (?,?,?,?)"
-        cursor.execute(addCustomQuery, (cname, age, team, pos))
+        addCustomQuery = "INSERT INTO players (name, age, team, pos, g, pts, ast, trb, stl, blk, tov) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+        cursor.execute(addCustomQuery, (cname, age, team, pos, gp, ppg, ast, rpg, spg, bpg, tpg))
 
         connection.commit()
         cursor.close()

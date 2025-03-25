@@ -11,7 +11,7 @@ const CustomPlayerForm = () => {
 
     const addCustomPlayer = async (e) => {
       e.preventDefault();
-      const getInsert = await addCustomToPlayer({cname, age, team, pos});
+      const getInsert = await addCustomToPlayer({cname, age, team, pos, gp, ppg, ast, rpg, spg, bpg, tpg});
 
         if (getInsert.success){
           console.log("added player successfully")
@@ -26,11 +26,19 @@ const CustomPlayerForm = () => {
     const [age, setAge] = useState("");
     const [team, setTeam] = useState("");
     const [pos, setPos] = useState("");
+    const [gp, setgp] = useState("");
+    const [ppg, setppg] = useState("");
+    const [ast, setast] = useState("");
+    const [rpg, setrpg] = useState("");
+    const [spg, setspg] = useState("");
+    const [bpg, setbpg] = useState("");
+    const [tpg, settpg] = useState("");
+    
 
   return (
     <Paper
       elevation={3}
-      sx={{p: 3, width: 700, mx: "auto", mt: 5, height: 800}}
+      sx={{p: 3, width: 700, mx: "auto", mt: 5, height: 500}}
     >
       <Typography variant="h3" align="center" gutterBottom>
         Add your own custom player!
@@ -63,6 +71,28 @@ const CustomPlayerForm = () => {
               pattern: "[A-Za-z]*"
             }
           }}
+        />
+
+        <TextField id="gamesPlayed" label="Enter Games Played" type="number" variant="outlined" value={gp}
+          onChange={(e) => setgp(e.target.value)}
+        />
+        <TextField id="ppg" label="Enter PPG" type="number" variant="outlined" value={ppg}
+          onChange={(e) => setppg(e.target.value)}
+        />
+        <TextField id="ast" label="Enter APG" type="number" variant="outlined" value={ast}
+          onChange={(e) => setast(e.target.value)}
+        />
+        <TextField id="rpg" label="Enter RPG" type="number" variant="outlined" value={rpg}
+          onChange={(e) => setrpg(e.target.value)}
+        />
+        <TextField id="spg" label="Enter SPG" type="number" variant="outlined" value={spg}
+          onChange={(e) => setspg(e.target.value)}
+        />
+        <TextField id="bpg" label="Enter BPG" type="number" variant="outlined" value={bpg}
+          onChange={(e) => setbpg(e.target.value)}
+        />
+        <TextField id="tpg" label="Enter Turnovers/PG" type="number" variant="outlined" value={tpg}
+          onChange={(e) => settpg(e.target.value)}
         />
 
         <Button variant="outlined" color="primary" fullWidth sx={{ mt: 3 }} type="submit">
