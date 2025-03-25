@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 // Pages
 import Watchlist from './pages/Watchlist';
 import Home from './pages/Home';
+import LoginCard from './pages/Login';
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LoginCard />} />
           <Route path="/watchlist" element={<Watchlist />} />
         </Routes>
       </div>
