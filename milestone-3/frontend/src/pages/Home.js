@@ -159,6 +159,29 @@ const Home = () => {
                   )}
                 </TableCell>
                 <TableCell align="right">
+                  <>FTM</>
+                  {orderByCol !== "ft" && (
+                    <IconButton
+                      onClick={(e) => {
+                        setDir("desc");
+                        setOrderByCol("ft");
+                      }}
+                    >
+                      <SortIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "ft" && dir === "desc" && (
+                    <IconButton onClick={(e) => setDir("asc")}>
+                      <ArrowDownwardIcon />
+                    </IconButton>
+                  )}
+                  {orderByCol === "ft" && dir === "asc" && (
+                    <IconButton onClick={(e) => setDir("desc")}>
+                      <ArrowUpwardIcon />
+                    </IconButton>
+                  )}
+                </TableCell>
+                <TableCell align="right">
                   <>RPG</>
                   {orderByCol !== "trb" && (
                     <IconButton
@@ -330,6 +353,7 @@ const Home = () => {
                   <TableCell align="right">{player.mp}</TableCell>
                   <TableCell align="right">{player.fg}</TableCell>
                   <TableCell align="right">{player.threept}</TableCell>
+                  <TableCell align="right">{player.ft}</TableCell>
                   <TableCell align="right">{player.trb}</TableCell>
                   <TableCell align="right">{player.ast}</TableCell>
                   <TableCell align="right">{player.stl}</TableCell>

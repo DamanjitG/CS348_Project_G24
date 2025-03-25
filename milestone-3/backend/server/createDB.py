@@ -4,7 +4,7 @@ def initialize_db(conn, sample=False):
     player_stats = pd.read_csv("playerStats.csv")
 
     # Drop columns we aren't concerned with
-    dropped_cols = ["GS", "Rk","3P%","2P","2PA","2P%", "Awards", "Player-additional", "FG%", "FT", "FTA", "FT%", "eFG%"]
+    dropped_cols = ["GS", "Rk","3P%","2P","2PA","2P%", "Awards", "Player-additional", "FG%", "FTA", "FT%", "eFG%"]
     player_stats.drop(columns=dropped_cols, inplace=True)
 
     # When a player is traded, they have three entries in the csv: one for their stats on each team, and one under team "2TM"
@@ -47,19 +47,20 @@ def initialize_db(conn, sample=False):
                         pos VARCHAR(2) CHECK( pos IN ({", ".join(positions)}) ) NOT NULL,
                         g INT,
                         mp DOUBLE,
-                        fg DOUBLE,
+                        fg DOUBLE CHECK (fg >= 0),
                         fga DOUBLE,
-                        threept DOUBLE,
+                        threept DOUBLE CHECK (threept >= 0),
                         threepta DOUBLE,
+                        ft DOUBLE CHECK (ft >= 0),
                         orb DOUBLE,
                         drb DOUBLE,
-                        trb DOUBLE,
-                        ast DOUBLE,
-                        stl DOUBLE,
-                        blk DOUBLE,
-                        tov DOUBLE,
-                        pf DOUBLE,
-                        pts DOUBLE,
+                        trb DOUBLE CHECK (trb >= 0),
+                        ast DOUBLE CHECK (ast >= 0),
+                        stl DOUBLE CHECK (stl >= 0),
+                        blk DOUBLE CHECK (blk >= 0),
+                        tov DOUBLE CHECK (tov >= 0),
+                        pf DOUBLE CHECK (pf >= 0),
+                        pts DOUBLE CHECK (pts >= 0),
                         fantasy DOUBLE,
                         creator VARCHAR(20),
                         FOREIGN KEY(creator) REFERENCES users(username),
@@ -77,6 +78,30 @@ def initialize_db(conn, sample=False):
     conn.execute("CREATE INDEX idx_players_fantasy ON players(fantasy);")
     conn.execute("CREATE INDEX idx_players_name ON players(name);")
     conn.execute("CREATE INDEX idx_players_pos ON players(pos);")
+
+    insertTriggerSql = """ 
+        CREATE TRIGGER fantasy_trigger_insert
+        AFTER INSERT
+        ON players
+        FOR EACH ROw 
+        BEGIN 
+                UPDATE players
+                SET fantasy = ROUND((threept * 3) + (fg * 2) + (ft * 1) + (trb + 1.2) + (ast * 1.5) + (blk * 2) + (stl * 2) + (tov * -1) + (pf * -1), 2);
+        END;
+        """
+    conn.execute(insertTriggerSql)
+
+    updateTriggerSql = """ 
+        CREATE TRIGGER fantasy_trigger_update
+        AFTER UPDATE of players
+        ON players
+        FOR EACH ROw 
+        BEGIN 
+                UPDATE players
+                SET fantasy = (threept * 3) + (fg * 2) + (trb + 1.2) + (ast * 1.5) + (blk * 2) + (stl * 2) + (tov * -1) + (pf * -1);
+        END;
+        """
+    conn.execute(updateTriggerSql)
 
     # Insert player stats from the CSV
     player_stats.to_sql(name="players", con=conn, schema="m1", if_exists="append", index=False)
