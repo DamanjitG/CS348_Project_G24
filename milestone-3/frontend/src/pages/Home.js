@@ -25,7 +25,7 @@ import SortIcon from "@mui/icons-material/Sort";
 
 import { getPlayersTable } from "../services/api";
 
-const Home = () => {
+const Home = ({ username }) => {
   const [playerSearch, setPlayerSearch] = useState("");
   const [posFilter, setPosFilter] = useState("");
   const [orderByCol, setOrderByCol] = useState("fantasy");
