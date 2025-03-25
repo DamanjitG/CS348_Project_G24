@@ -217,6 +217,7 @@ const Watchlist = () => {
         );
 
         setSuccessMessage("Player removed from watchlist");
+        fetchBestTeam();
         setTimeout(() => setSuccessMessage(null), 3000);
       } else {
         setError(response.error || "Failed to remove player from watchlist");
