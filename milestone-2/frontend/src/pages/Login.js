@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"
 import { Typography, Paper, Button, Box, TextField } from "@mui/material";
 import { loginUser } from "../services/auth";
 
@@ -10,19 +9,6 @@ const LoginCard = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const nav = useNavigate();
-
-
-  const getLogin = async(e) => {
-    e.preventDefault();
-    const getLoginResult = await loginUser(username, password);
-    if (getLoginResult.success){
-      console.log("Login success", getLoginResult.user)
-      nav("/")
-    } else{
-      console.log("Login failed", getLoginResult.error)
-    }
-  }
 
   return (
     <Paper
@@ -34,7 +20,7 @@ const LoginCard = () => {
         Login
       </Typography>
 
-      <Box component="form" noValidate autoComplete="off" onSubmit={getLogin}>
+      <Box component="form" noValidate autoComplete="off">
         <TextField id="username" label="Enter Username" variant="outlined" margin="dense" fullWidth value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -43,7 +29,7 @@ const LoginCard = () => {
         />
 
         <Button variant="outlined" color="primary" fullWidth sx={{ mt: 3 }} type="submit">
-          Login
+          Register
         </Button>
       </Box>
     </Paper>

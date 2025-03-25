@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 // Components
 import Navbar from './components/Navbar';
-import LoginCard from './pages/Login';
 
 // Pages
 import Watchlist from './pages/Watchlist';
@@ -30,7 +29,6 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginCard />} />
           <Route path="/watchlist" element={<Watchlist />} />
         </Routes>
       </div>
