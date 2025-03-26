@@ -50,6 +50,17 @@ Install the packages with node package manager (npm) and start the development s
 
 The website (interface) will be available locally on http://localhost:3000/.
 
+## Logging In:
+
+To sign in, please use a valid `username:password` combo that is pre-initalized.
+
+Sample Logins (username:password):
+- AaronAndrews:password1
+- BobbyBrown:password2
+
+You will stay signed in while **clicking between pages**
+
+To logout and login with a different user, **refresh the page via ctrl+r** and you will be prompted back to the login screen
 
 ## Sample Database
 
