@@ -16,3 +16,15 @@ const api = axios.create({
       return { success: false, error: error.message };
     }
   };
+
+  export const registerUser = async (username, password) => {
+
+    try {
+      const response = await api.post("/register", {username, password})
+      return response.data
+    } catch (error) {
+      console.log("Register is not working")
+      return {success: false, message: error.message}
+    }
+
+  }
