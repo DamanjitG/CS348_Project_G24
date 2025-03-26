@@ -50,7 +50,6 @@ const CustomPlayerForm = ({ username }) => {
       </Typography>
 
 
-      {/* add back onSubmit={addCustomPlayer} */}
       <Box component="form" noValidate autoComplete="off" onSubmit={addCustomPlayer}>
         <TextField id="cname" label="Enter a Name" variant="outlined"  value={cname}
           onChange={(e) => setcname(e.target.value)}
