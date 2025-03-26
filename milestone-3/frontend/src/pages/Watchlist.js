@@ -33,6 +33,7 @@ import {
   addToWatchlist,
   getUserWatchlists,
   deleteWatchlist,
+  getBestTeam,
 } from "../services/api";
 
 const Watchlist = ({ username }) => {
@@ -50,6 +51,7 @@ const Watchlist = ({ username }) => {
   const [openAddPlayerDialog, setOpenAddPlayerDialog] = useState(false);
   const [newWatchlistName, setNewWatchlistName] = useState("");
   const [newPlayerId, setNewPlayerId] = useState("");
+  const [bestTeam, setBestTeam] = useState({});
 
   const fetchWatchlists = useCallback(async () => {
     try {
@@ -100,9 +102,30 @@ const Watchlist = ({ username }) => {
     }
   }, [watchlistName]);
 
+  const fetchBestTeam = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await getBestTeam(username, watchlistName);
+
+      if (response.success) {
+        setBestTeam(response.bestteam[0] || "no best team");
+      } else {
+        setError(response.error || "Failed to fetch best team");
+      }
+    } catch (err) {
+      setError("Error connecting to the server");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [watchlistName]);
+
   useEffect(() => {
-    fetchWatchlists().then(() => fetchWatchlist());
-  }, [fetchWatchlists, fetchWatchlist]);
+    fetchWatchlists().then(() => {
+      fetchWatchlist();
+      fetchBestTeam();
+    });
+  }, [fetchWatchlists, fetchWatchlist, fetchBestTeam]);
 
   const handleCreateWatchlist = async () => {
     if (!newWatchlistName.trim()) {
@@ -149,6 +172,7 @@ const Watchlist = ({ username }) => {
         setNewPlayerId("");
         setTimeout(() => setSuccessMessage(null), 3000);
         fetchWatchlist();
+        fetchBestTeam();
       } else {
         setError(response.error || "Failed to add player to watchlist");
       }
@@ -192,6 +216,7 @@ const Watchlist = ({ username }) => {
         );
 
         setSuccessMessage("Player removed from watchlist");
+        fetchBestTeam();
         setTimeout(() => setSuccessMessage(null), 3000);
       } else {
         setError(response.error || "Failed to remove player from watchlist");
@@ -283,6 +308,54 @@ const Watchlist = ({ username }) => {
           {successMessage}
         </Alert>
       )}
+
+      <Typography variant="h5" component="h2" sx={{ mb: 2 }}>
+        Best Team for Watchlist: {watchlistName}
+      </Typography>
+
+      {bestTeam === "no best team" ? (
+        <Paper sx={{ p: 3, textAlign: "center" }}>
+          <Typography variant="body1">No regulation team can be constructed from this watchlist.</Typography>
+        </Paper>
+      ) : (
+        <TableContainer component={Paper}>
+          {console.log(bestTeam)}
+          <Table>
+            <TableHead>
+              <TableRow sx={{ backgroundColor: "primary.light" }}>
+                <TableCell>PG</TableCell>
+                <TableCell>Fantasy</TableCell>
+                <TableCell>SG</TableCell>
+                <TableCell>Fantasy</TableCell>
+                <TableCell>SF</TableCell>
+                <TableCell>Fantasy</TableCell>
+                <TableCell>PF</TableCell>
+                <TableCell>Fantasy</TableCell>
+                <TableCell>C</TableCell>
+                <TableCell>Fantasy</TableCell>
+                <TableCell>Total Points</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>{bestTeam.PG}</TableCell>
+                <TableCell>{bestTeam.PG_fantasy}</TableCell>
+                <TableCell>{bestTeam.SG}</TableCell>
+                <TableCell>{bestTeam.SG_fantasy}</TableCell>
+                <TableCell>{bestTeam.SF}</TableCell>
+                <TableCell>{bestTeam.SF_fantasy}</TableCell>
+                <TableCell>{bestTeam.PF}</TableCell>
+                <TableCell>{bestTeam.PF_fantasy}</TableCell>
+                <TableCell>{bestTeam.C}</TableCell>
+                <TableCell>{bestTeam.C_fantasy}</TableCell>
+                <TableCell>{bestTeam.total_fantasy}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
+
+      <br></br>
 
       <Typography variant="h5" component="h2" sx={{ mb: 2 }}>
         Watchlist: {watchlistName}
