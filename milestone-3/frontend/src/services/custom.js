@@ -18,3 +18,16 @@ export const addCustomToPlayer = async (customData) => {
   }
 
 }
+
+export const getCustomPlayers = async (username) => {
+
+  try {
+    const response = await api.get(`/players/${username}`)
+    return response.data;
+
+  } catch (error) {
+    console.log("Error getting custom players")
+    return {success: false, error: error.message}
+  }
+
+}

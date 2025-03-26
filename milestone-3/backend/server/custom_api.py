@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from . import db
+from . import db, helpers
 
 custom_bp = Blueprint("custom", __name__, url_prefix="/api")
 
@@ -37,3 +37,22 @@ def add_custom_player():
         return jsonify({"success": True, "message": "Custom player has been added successfully"}), 200
     except Exception as e:
         return jsonify({"success": False, "message": "Failed to add custom player to DB"})
+
+
+@custom_bp.route("/players/<string:username>", methods=["GET"])
+
+def get_custom_players(username):
+    try:
+        connection = db.get_db()
+        cursor = connection.cursor()
+
+        query = "SELECT * FROM players WHERE creator = ?"
+
+        cursor.execute(query, (username,))
+        rows = cursor.fetchall()
+        custom_players = [helpers.dict_from_row(row, cursor) for row in rows]
+        cursor.close()
+
+        return jsonify({"success": True, "custom_players": custom_players})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)})

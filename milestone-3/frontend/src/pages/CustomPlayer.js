@@ -1,9 +1,32 @@
-import React, { useState } from 'react'
-import { Typography, Paper, Button, Box, TextField, Alert } from '@mui/material'
-import { addCustomToPlayer } from '../services/custom'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Typography, Paper, Button, Box, TextField, Alert, TableHead, Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow, } from '@mui/material'
+import { addCustomToPlayer, getCustomPlayers } from '../services/custom'
 
 const CustomPlayerForm = ({ username }) => {
   const [successMessage, setSuccessMessage] = useState(null)
+
+  const [customPlayers, setcustomPlayers] = useState([])
+
+
+
+
+  const getReqCustomPlayers = useCallback(async () => {
+    const response = await getCustomPlayers(username)
+    if (response.success){
+      console.log('The custom players are:', response.custom_players)
+      setcustomPlayers(response.custom_players)
+    } else {
+      console.log("Custom players: ERROR FETCHING", response.error)
+    }
+  }, [username])
+
+  useEffect(() => {
+    getReqCustomPlayers();
+  }, [getReqCustomPlayers]);
 
   const addCustomPlayer = async e => {
     e.preventDefault()
@@ -14,6 +37,7 @@ const CustomPlayerForm = ({ username }) => {
     if (response.success) {
       setSuccessMessage('Added player successfully')
       e.target.reset()
+      getReqCustomPlayers()
       setTimeout(() => setSuccessMessage(null), 3000)
     } else {
       console.error('failed to add custom player', response.error)
@@ -21,6 +45,7 @@ const CustomPlayerForm = ({ username }) => {
   }
 
   return (
+    <>
     <Paper elevation={3} sx={{ p: 3, width: 700, mx: 'auto', mt: 5, height: 500 }}>
       <Typography variant='h3' align='center' gutterBottom>
         Add your own custom player!
@@ -76,6 +101,44 @@ const CustomPlayerForm = ({ username }) => {
         </Button>
       </Box>
     </Paper>
+
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell>
+            <TableCell>Team</TableCell>
+            <TableCell>Position</TableCell>
+            <TableCell align='right'>PPG</TableCell>
+            <TableCell align='right'>APG</TableCell>
+            <TableCell align='right'>RPG</TableCell>
+            <TableCell align='right'>SPG</TableCell>
+            <TableCell align='right'>BPG</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {customPlayers.map((player) => (
+            <TableRow key={player.pid}>
+              <TableCell>{player.name}</TableCell>
+              <TableCell>{player.team}</TableCell>
+              <TableCell>{player.pos}</TableCell>
+              <TableCell align='right'>{player.pts}</TableCell>
+              <TableCell align='right'>{player.ast}</TableCell>
+              <TableCell align='right'>{player.trb}</TableCell>
+              <TableCell align='right'>{player.stl}</TableCell>
+              <TableCell align='right'>{player.blk}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
+    
+
+    </>
+
+
+
   )
 }
 
