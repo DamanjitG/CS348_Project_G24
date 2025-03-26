@@ -45,7 +45,7 @@ const CustomPlayerForm = ({ username }) => {
   }
 
   return (
-    <>
+    <div>
     <Paper elevation={3} sx={{ p: 3, width: 700, mx: 'auto', mt: 5, height: 500 }}>
       <Typography variant='h3' align='center' gutterBottom>
         Add your own custom player!
@@ -102,6 +102,11 @@ const CustomPlayerForm = ({ username }) => {
       </Box>
     </Paper>
 
+    {customPlayers.length === 0 ? (
+      <Paper>
+        <Typography variant='body1'>You have not made any custom players</Typography>
+      </Paper>
+    ) : (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
@@ -132,10 +137,11 @@ const CustomPlayerForm = ({ username }) => {
         </TableBody>
       </Table>
     </TableContainer>
-
+    )
+  }
     
 
-    </>
+    </div>
 
 
 
