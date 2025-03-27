@@ -1,12 +1,7 @@
 from flask import Blueprint, request, jsonify
-from . import db
+from . import db, helpers
 
 watchlist_bp = Blueprint("watchlist", __name__, url_prefix="/api")
-
-def dict_from_row(row, cursor):
-    if not row:
-        return None
-    return {description[0]: value for description, value in zip(cursor.description, row)}
 
 @watchlist_bp.route(
     "/watchlist/<string:username>/<string:watchlist_name>", methods=["GET"]
@@ -27,7 +22,7 @@ def get_user_watchlist(username, watchlist_name):
 
         cursor.execute(query, (username, watchlist_name))
         rows = cursor.fetchall()
-        watchlist = [dict_from_row(row, cursor) for row in rows]
+        watchlist = [helpers.dict_from_row(row, cursor) for row in rows]
         cursor.close()
 
         return jsonify({"success": True, "watchlist": watchlist})
@@ -177,7 +172,7 @@ def get_user_watchlists(username):
         query = "SELECT watchlist_name FROM user_watchlists WHERE username = ?"
         cursor.execute(query, (username,))
         rows = cursor.fetchall()
-        watchlists = [dict_from_row(row, cursor) for row in rows]
+        watchlists = [helpers.dict_from_row(row, cursor) for row in rows]
         cursor.close()
 
         return jsonify({"success": True, "watchlists": watchlists})

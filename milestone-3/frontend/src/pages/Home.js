@@ -26,7 +26,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import { getPlayersTable } from "../services/api";
 
-const Home = () => {
+const Home = ({ username }) => {
   const [playerSearch, setPlayerSearch] = useState("");
   const [posFilter, setPosFilter] = useState("");
   const [orderByCol, setOrderByCol] = useState("fantasy");
@@ -367,6 +367,7 @@ const Home = () => {
                     </IconButton>
                   )}
                 </TableCell>
+                <TableCell alight="right">Creator</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -386,6 +387,8 @@ const Home = () => {
                   <TableCell align="right">{player.tov}</TableCell>
                   <TableCell align="right">{player.pts}</TableCell>
                   <TableCell align="right">{player.fantasy}</TableCell>
+                  {player.creator ? <TableCell sx={{ fontSize: '0.5rem' }}>{player.creator}</TableCell> : <TableCell>NBA</TableCell>}
+                 
                 </TableRow>
               ))}
             </TableBody>

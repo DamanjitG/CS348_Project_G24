@@ -152,6 +152,106 @@ def initialize_db(conn, sample=False):
 
     conn.execute(createUserWatchlistsTable)
     conn.execute(createWatchlistTable)
+    
+    # Create best teams per watchlist view
+    createBestTeamsView = """
+        CREATE VIEW IF NOT EXISTS best_watchlist_teams AS
+        WITH 
+        pg_best AS (
+        SELECT w.username, w.watchlist_name, p.pid, p.name, p.fantasy
+        FROM watchlist w
+        JOIN players p ON w.pid = p.pid
+        WHERE p.pos = 'PG'
+        AND p.fantasy = (
+                SELECT MAX(p2.fantasy)
+                FROM watchlist w2
+                JOIN players p2 ON w2.pid = p2.pid
+                WHERE w2.username = w.username 
+                AND w2.watchlist_name = w.watchlist_name 
+                AND p2.pos = 'PG'
+        )),
+        sg_best AS (
+        SELECT w.username, w.watchlist_name, p.pid, p.name, p.fantasy
+        FROM watchlist w
+        JOIN players p ON w.pid = p.pid
+        WHERE p.pos = 'SG'
+        AND p.fantasy = (
+                SELECT MAX(p2.fantasy)
+                FROM watchlist w2
+                JOIN players p2 ON w2.pid = p2.pid
+                WHERE w2.username = w.username 
+                AND w2.watchlist_name = w.watchlist_name 
+                AND p2.pos = 'SG'
+        )),
+        sf_best AS (
+        SELECT w.username, w.watchlist_name, p.pid, p.name, p.fantasy
+        FROM watchlist w
+        JOIN players p ON w.pid = p.pid
+        WHERE p.pos = 'SF'
+        AND p.fantasy = (
+                SELECT MAX(p2.fantasy)
+                FROM watchlist w2
+                JOIN players p2 ON w2.pid = p2.pid
+                WHERE w2.username = w.username 
+                AND w2.watchlist_name = w.watchlist_name 
+                AND p2.pos = 'SF'
+        )),
+        pf_best AS (
+        SELECT w.username, w.watchlist_name, p.pid, p.name, p.fantasy
+        FROM watchlist w
+        JOIN players p ON w.pid = p.pid
+        WHERE p.pos = 'PF'
+        AND p.fantasy = (
+                SELECT MAX(p2.fantasy)
+                FROM watchlist w2
+                JOIN players p2 ON w2.pid = p2.pid
+                WHERE w2.username = w.username 
+                AND w2.watchlist_name = w.watchlist_name 
+                AND p2.pos = 'PF'
+        )),
+        c_best AS (
+        SELECT w.username, w.watchlist_name, p.pid, p.name, p.fantasy
+        FROM watchlist w
+        JOIN players p ON w.pid = p.pid
+        WHERE p.pos = 'C'
+        AND p.fantasy = (
+                SELECT MAX(p2.fantasy)
+                FROM watchlist w2
+                JOIN players p2 ON w2.pid = p2.pid
+                WHERE w2.username = w.username 
+                AND w2.watchlist_name = w.watchlist_name 
+                AND p2.pos = 'C'
+        ))
+        SELECT 
+        uw.username,
+        uw.watchlist_name,
+        pg_best.name AS PG,
+        pg_best.fantasy AS PG_fantasy,
+        sg_best.name AS SG,
+        sg_best.fantasy AS SG_fantasy,
+        sf_best.name AS SF,
+        sf_best.fantasy AS SF_fantasy,
+        pf_best.name AS PF,
+        pf_best.fantasy AS PF_fantasy,
+        c_best.name AS C,
+        c_best.fantasy AS C_fantasy,
+        ROUND((pg_best.fantasy + sg_best.fantasy + sf_best.fantasy +
+        pf_best.fantasy + c_best.fantasy), 2) AS total_fantasy
+        FROM user_watchlists uw
+        JOIN pg_best ON uw.username = pg_best.username 
+                AND uw.watchlist_name = pg_best.watchlist_name
+        JOIN sg_best ON uw.username = sg_best.username 
+                AND uw.watchlist_name = sg_best.watchlist_name
+        JOIN sf_best ON uw.username = sf_best.username 
+                AND uw.watchlist_name = sf_best.watchlist_name
+        JOIN pf_best ON uw.username = pf_best.username 
+                AND uw.watchlist_name = pf_best.watchlist_name
+        JOIN c_best  ON uw.username = c_best.username 
+                AND uw.watchlist_name = c_best.watchlist_name;
+
+    """
+    conn.execute(createBestTeamsView);
+    conn.commit();
 
     # Insert sample data for user watchlists
     insertUserWatchLists = """
@@ -160,7 +260,8 @@ def initialize_db(conn, sample=False):
             ('AaronAndrews', 'WatchList2'),
             ('AaronAndrews', 'New Watchlist'),
             ('BobbyBrown', 'Trade Targets'), 
-            ('BobbyBrown', 'Point Guards');
+            ('BobbyBrown', 'Point Guards'),
+            ('user1', 'Allstars');
     """
     conn.execute(insertUserWatchLists)
     conn.commit()
@@ -182,7 +283,14 @@ def initialize_db(conn, sample=False):
             ('BobbyBrown', 'Point Guards', 4),
             ('BobbyBrown', 'Point Guards', 13),
             ('BobbyBrown', 'Point Guards', 17),
-            ('BobbyBrown', 'Point Guards', 29);
+            ('BobbyBrown', 'Point Guards', 29),
+            ('user1', 'Allstars', 1),
+            ('user1', 'Allstars', 2),
+            ('user1', 'Allstars', 3),
+            ('user1', 'Allstars', 4),
+            ('user1', 'Allstars', 10),
+            ('user1', 'Allstars', 12),
+            ('user1', 'Allstars', 16);
     """
     conn.execute(insertUserWatchLists)
     conn.commit()

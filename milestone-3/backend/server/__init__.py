@@ -4,12 +4,20 @@ from flask import Flask, request, jsonify
 from . import db, helpers
 from flask_cors import CORS
 from .watchlist_api import watchlist_bp
+from .bestteams_api import bestteams_bp
+from .login_api import login_bp
+from .custom_api import custom_bp
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     CORS(app)
+    app.register_blueprint(login_bp)
     app.register_blueprint(watchlist_bp)
+
+    app.register_blueprint(custom_bp)
+    app.register_blueprint(bestteams_bp)
+
     app.config.from_mapping(
         DATABASE=os.path.join(os.getcwd(), 'g24_db.sqlite'),
     )
@@ -36,7 +44,7 @@ def create_app(test_config=None):
         
         database = db.get_db()
 
-        queryLine1 = "select name, team, age, pos, g, mp, fg, threept, ft, trb, ast, stl, blk, tov, pts, fantasy from players as p"
+        queryLine1 = "select name, team, age, pos, g, mp, fg, threept, ft, trb, ast, stl, blk, tov, pts, fantasy, creator from players as p"
         queryLine2 = f"where name like '%{playerSearch}%'"
         queryLine3 = f"and p.pos = '{posFilter}'"
         queryLine4 = f"order by {orderByCol if orderByCol != '' else 'fantasy'} {direction if direction in ['asc', 'desc', 'ASC', 'DESC'] else 'desc'}"
