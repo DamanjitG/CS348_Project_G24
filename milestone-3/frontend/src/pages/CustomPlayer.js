@@ -4,6 +4,8 @@ import { Typography, Paper, Button, Box, TextField, Alert, TableHead, Table,
   TableCell,
   TableContainer,
   TableRow, } from '@mui/material'
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { addCustomToPlayer, getCustomPlayers } from '../services/custom'
 
 const CustomPlayerForm = ({ username }) => {
@@ -11,8 +13,39 @@ const CustomPlayerForm = ({ username }) => {
 
   const [customPlayers, setcustomPlayers] = useState([])
 
+  const [sortType, setSortType] = useState(null)
+  const [sortDir, setSortDir] = useState(null)
 
 
+  const setSort = (category) => {
+
+    let dir = "desc";
+
+    if (sortType === category){
+      dir = sortDir === "desc" ? 'asc' : 'desc' 
+    }
+    setSortType(category)
+    setSortDir(dir)
+
+    const sortedCustomPlayers = [...customPlayers].sort((a,b) => {
+      if (a[category] > b[category]){
+        if (dir === 'desc'){
+          return -1;
+        } else {
+          return 1;
+        }
+      } else if (a[category] < b[category]){
+        if (dir === 'desc'){
+          return 1;
+        } else {
+          return -1
+        }
+      } else {
+        return 0;
+      }
+    })
+    setcustomPlayers(sortedCustomPlayers)
+  }
 
   const getReqCustomPlayers = useCallback(async () => {
     const response = await getCustomPlayers(username)
@@ -58,8 +91,8 @@ const CustomPlayerForm = ({ username }) => {
       )}
 
       <Box component='form' noValidate autoComplete='off' onSubmit={addCustomPlayer}>
-        <TextField name='cname' label='Enter a Name' variant='outlined' />
-        <TextField name='age' label='Enter a Age' type='number' variant='outlined' />
+        <TextField name='cname' label='Enter a Full Name' variant='outlined' />
+        <TextField name='age' label='Enter an Age' type='number' variant='outlined' />
         <TextField
           name='team'
           label='Enter a team ie: LAL'
@@ -74,7 +107,7 @@ const CustomPlayerForm = ({ username }) => {
         />
         <TextField
           name='pos'
-          label='Enter a position'
+          label='Enter a position ie: PG|SF|C'
           type='text'
           variant='outlined'
           slotProps={{
@@ -96,32 +129,32 @@ const CustomPlayerForm = ({ username }) => {
         <TextField name='pf' label='Enter fouls' type='number' variant='outlined' />
         <TextField name='ft' label='Enter Free throws' type='number' variant='outlined' />
 
-        <Button variant='outlined' color='primary' fullWidth sx={{ mt: 3 }} type='submit'>
+        <Button variant='contained' color='primary' fullWidth sx={{ mt: 3 }} type='submit'>
           Submit Player
         </Button>
       </Box>
     </Paper>
 
     {customPlayers.length === 0 ? (
-      <Paper>
-        <Typography variant='body1'>You have not made any custom players</Typography>
-      </Paper>
+      
+        <Typography variant='h2' align='center'>You have not made any custom players</Typography>
+      
     ) : (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
+    <TableContainer sx={{ fontSize: '3rem', mt: '50px' }}component={Paper} align="center">{username}'s Custom Players <span style={{ fontSize: '1rem' }}> - Click the blue stats to filter</span>
+      <Table> 
+        <TableHead align='right' >
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell>Team</TableCell>
             <TableCell>Position</TableCell>
-            <TableCell align='right'>PPG</TableCell>
-            <TableCell align='right'>APG</TableCell>
-            <TableCell align='right'>RPG</TableCell>
-            <TableCell align='right'>SPG</TableCell>
-            <TableCell align='right'>BPG</TableCell>
+            <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("pts")}>PPG {sortType === 'pts' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
+            <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("ast")}>APG {sortType === 'ast' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
+            <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("trb")}>RPG {sortType === 'trb' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
+            <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("stl")}>SPG {sortType === 'stl' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
+            <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("blk")}>BPG {sortType === 'blk' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody onClick={() => setSort("")}>
           {customPlayers.map((player) => (
             <TableRow key={player.pid}>
               <TableCell>{player.name}</TableCell>

@@ -58,6 +58,8 @@ Sample Logins (username:password):
 - AaronAndrews:password1
 - BobbyBrown:password2
 
+**You may also register an account and login with it**
+
 You will stay signed in while **clicking between pages**
 
 To logout and login with a different user, **refresh the page via ctrl+r** and you will be prompted back to the login screen
