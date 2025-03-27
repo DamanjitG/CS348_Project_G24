@@ -136,7 +136,6 @@ const Home = ({ username }) => {
                 </TableCell>
                 <TableCell>Team</TableCell>
                 <TableCell>Position</TableCell>
-                <TableCell align="right">MP</TableCell>
                 <TableCell align="right">
                   <>FGM</>
                   {orderByCol !== "fg" && (
@@ -376,7 +375,6 @@ const Home = ({ username }) => {
                   <TableCell>{player.name}</TableCell>
                   <TableCell>{player.team}</TableCell>
                   <TableCell>{player.pos}</TableCell>
-                  <TableCell align="right">{player.mp}</TableCell>
                   <TableCell align="right">{player.fg}</TableCell>
                   <TableCell align="right">{player.threept}</TableCell>
                   <TableCell align="right">{player.ft}</TableCell>
@@ -387,8 +385,13 @@ const Home = ({ username }) => {
                   <TableCell align="right">{player.tov}</TableCell>
                   <TableCell align="right">{player.pts}</TableCell>
                   <TableCell align="right">{player.fantasy}</TableCell>
-                  {player.creator ? <TableCell sx={{ fontSize: '0.5rem' }}>{player.creator}</TableCell> : <TableCell>NBA</TableCell>}
-                 
+                  {player.creator ? (
+                    <TableCell sx={{ fontSize: "0.5rem" }}>
+                      {player.creator}
+                    </TableCell>
+                  ) : (
+                    <TableCell>NBA</TableCell>
+                  )}
                 </TableRow>
               ))}
             </TableBody>

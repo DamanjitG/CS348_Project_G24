@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   Typography,
   Paper,
@@ -23,6 +23,7 @@ import {
   FormControl,
   InputLabel,
   Grid,
+  Autocomplete,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
@@ -34,6 +35,7 @@ import {
   getUserWatchlists,
   deleteWatchlist,
   getBestTeam,
+  getPlayersList,
 } from "../services/api";
 
 const Watchlist = ({ username }) => {
@@ -52,6 +54,20 @@ const Watchlist = ({ username }) => {
   const [newWatchlistName, setNewWatchlistName] = useState("");
   const [newPlayerId, setNewPlayerId] = useState("");
   const [bestTeam, setBestTeam] = useState({});
+  const playersList = useRef([]);
+
+  const fetchPlayersList = async () => {
+    try {
+      const response = await getPlayersList();
+      if (response.success && response.players && response.players.length > 0) {
+        return response.players;
+      }
+      return [];
+    } catch (err) {
+      console.log("Error fetching players!");
+      return [];
+    }
+  };
 
   const fetchWatchlists = useCallback(async () => {
     try {
@@ -119,6 +135,14 @@ const Watchlist = ({ username }) => {
       setLoading(false);
     }
   }, [watchlistName]);
+
+  useEffect(() => {
+    (async () => {
+      let players = await fetchPlayersList();
+      playersList.current = players;
+      console.log(playersList.current);
+    })();
+  }, []);
 
   useEffect(() => {
     fetchWatchlists().then(() => {
@@ -317,7 +341,9 @@ const Watchlist = ({ username }) => {
 
       {bestTeam === "no best team" ? (
         <Paper sx={{ p: 3, textAlign: "center" }}>
-          <Typography variant="body1">No regulation team can be constructed from this watchlist.</Typography>
+          <Typography variant="body1">
+            No regulation team can be constructed from this watchlist.
+          </Typography>
         </Paper>
       ) : (
         <TableContainer component={Paper}>
@@ -447,19 +473,15 @@ const Watchlist = ({ username }) => {
       <Dialog
         open={openAddPlayerDialog}
         onClose={() => setOpenAddPlayerDialog(false)}
+        sx={{ height: "500px" }}
       >
         <DialogTitle>Add Player to Watchlist</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Player ID"
-            type="text"
-            fullWidth
-            variant="outlined"
-            value={newPlayerId}
-            onChange={(e) => setNewPlayerId(e.target.value)}
-            helperText="Enter the player ID to add to this watchlist"
+        <DialogContent sx={{ height: "500px" }}>
+          <Autocomplete
+            disablePortal
+            options={playersList.current}
+            renderInput={(params) => <TextField {...params} label="Player" />}
+            onChange={(e, value) => setNewPlayerId(value.id.toString())}
           />
         </DialogContent>
         <DialogActions>
