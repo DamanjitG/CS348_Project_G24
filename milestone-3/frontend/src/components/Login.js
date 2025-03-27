@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Typography, Paper, Button, Box, TextField } from "@mui/material";
+import { Typography, Paper, Button, Box, TextField, Alert } from "@mui/material";
 import { loginUser, registerUser } from "../services/auth";
 
 const LoginCard = ({ username, setUsername }) => {
   const [register, setregister] = useState(true)
+  const [loginFailed, setLoginFailed] = useState(false)
 
 
   const getLogin = async(e) => {
@@ -13,6 +14,8 @@ const LoginCard = ({ username, setUsername }) => {
     
     if (getLoginResult.success) {
       setUsername(formData.get('username'));
+    } else {
+      setLoginFailed(true);
     }
   }
 
@@ -43,6 +46,12 @@ const LoginCard = ({ username, setUsername }) => {
         <Typography variant='h3' align='center' gutterBottom>
         Register
       </Typography>
+      )}
+
+      {loginFailed && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {"Invalid credentials"}
+        </Alert>
       )}
       
 

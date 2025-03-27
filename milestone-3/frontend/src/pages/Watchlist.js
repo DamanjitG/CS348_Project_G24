@@ -174,9 +174,11 @@ const Watchlist = ({ username }) => {
         fetchWatchlist();
         fetchBestTeam();
       } else {
+        setOpenAddPlayerDialog(false);
         setError(response.error || "Failed to add player to watchlist");
       }
     } catch (err) {
+      setOpenAddPlayerDialog(false);
       setError("Error connecting to the server");
       console.error(err);
     }
