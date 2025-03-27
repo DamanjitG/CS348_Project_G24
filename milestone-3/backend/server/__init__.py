@@ -44,7 +44,7 @@ def create_app(test_config=None):
         
         database = db.get_db()
 
-        queryLine1 = "select name, team, age, pos, g, mp, fg, threept, ft, trb, ast, stl, blk, tov, pts, fantasy from players as p"
+        queryLine1 = "select name, team, age, pos, g, mp, fg, threept, ft, trb, ast, stl, blk, tov, pts, fantasy, creator from players as p"
         queryLine2 = f"where name like '%{playerSearch}%'"
         queryLine3 = f"and p.pos = '{posFilter}'"
         queryLine4 = f"order by {orderByCol if orderByCol != '' else 'fantasy'} {direction if direction in ['asc', 'desc', 'ASC', 'DESC'] else 'desc'}"
