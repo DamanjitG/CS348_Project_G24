@@ -342,6 +342,7 @@ const Home = ({ username }) => {
                     </IconButton>
                   )}
                 </TableCell>
+                <TableCell alight="right">Creator</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -361,6 +362,8 @@ const Home = ({ username }) => {
                   <TableCell align="right">{player.tov}</TableCell>
                   <TableCell align="right">{player.pts}</TableCell>
                   <TableCell align="right">{player.fantasy}</TableCell>
+                  {player.creator ? <TableCell sx={{ fontSize: '0.5rem' }}>{player.creator}</TableCell> : <TableCell>NBA</TableCell>}
+                 
                 </TableRow>
               ))}
             </TableBody>
