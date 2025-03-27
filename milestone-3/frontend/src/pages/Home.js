@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   Typography,
   Paper,
@@ -17,11 +17,12 @@ import {
   Select,
   MenuItem,
   IconButton,
-  Icon,
+  InputAdornment,
 } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import SortIcon from "@mui/icons-material/Sort";
+import SearchIcon from "@mui/icons-material/Search";
 
 import { getPlayersTable } from "../services/api";
 
@@ -31,6 +32,8 @@ const Home = ({ username }) => {
   const [orderByCol, setOrderByCol] = useState("fantasy");
   const [dir, setDir] = useState("desc");
   const [playerdata, setPlayerData] = useState([]);
+
+  var temp = "";
 
   const [loading, setLoading] = useState(true);
 
@@ -72,7 +75,6 @@ const Home = ({ username }) => {
       <Typography variant="h4" component="h1" gutterBottom>
         Welcome to FantasyBasketball++ ᕙ(▀̿ĺ̯▀̿ ̿)ᕗ
       </Typography>
-
       <TextField
         autoFocus
         margin="dense"
@@ -80,9 +82,26 @@ const Home = ({ username }) => {
         type="text"
         fullWidth
         variant="outlined"
-        value={playerSearch}
-        onChange={(e) => setPlayerSearch(e.target.value)}
-      />
+        onChange={(e) => {
+          temp = e.target.value;
+        }}
+        slotProps={{
+          input: {
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton>
+                  <SearchIcon
+                    onClick={(e) => {
+                      console.log(playerSearch);
+                      setPlayerSearch(temp);
+                    }}
+                  />
+                </IconButton>
+              </InputAdornment>
+            ),
+          },
+        }}
+      ></TextField>
       <FormControl fullWidth margin="dense">
         <InputLabel>Position</InputLabel>
         <Select
@@ -108,7 +127,13 @@ const Home = ({ username }) => {
           <Table>
             <TableHead>
               <TableRow sx={{ backgroundColor: "primary.light" }}>
-                <TableCell>Name</TableCell>
+                <TableCell>
+                  Name
+                  <br></br>
+                  {playerSearch !== "" && (
+                    <>Current Search Query: {playerSearch}</>
+                  )}
+                </TableCell>
                 <TableCell>Team</TableCell>
                 <TableCell>Position</TableCell>
                 <TableCell align="right">

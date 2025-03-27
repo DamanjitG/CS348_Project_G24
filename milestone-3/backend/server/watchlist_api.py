@@ -93,6 +93,13 @@ def add_to_watchlist():
             cursor.close()
             return jsonify({"success": False, "error": "Player already in watchlist"}), 400
 
+        valid_pid_query = "SELECT * FROM players WHERE pid = ?"
+        cursor.execute(valid_pid_query, (player_id,))
+        
+        if not cursor.fetchone():
+            cursor.close()
+            return jsonify({"success": False, "error": "Invalid player id"})
+
         insert_query = "INSERT INTO watchlist (username, watchlist_name, pid) VALUES (?, ?, ?)"
         cursor.execute(insert_query, (username, watchlist_name, player_id))
 

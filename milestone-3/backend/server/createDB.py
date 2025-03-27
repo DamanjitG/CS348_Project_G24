@@ -258,10 +258,9 @@ def initialize_db(conn, sample=False):
             INSERT INTO user_watchlists (username, watchlist_name) VALUES
             ('AaronAndrews', 'My Players'),
             ('AaronAndrews', 'WatchList2'),
-            ('AaronAndrews', 'New Watchlist'),
             ('BobbyBrown', 'Trade Targets'), 
             ('BobbyBrown', 'Point Guards'),
-            ('user1', 'Allstars');
+            ('AaronAndrews', 'Allstars');
     """
     conn.execute(insertUserWatchLists)
     conn.commit()
@@ -284,13 +283,13 @@ def initialize_db(conn, sample=False):
             ('BobbyBrown', 'Point Guards', 13),
             ('BobbyBrown', 'Point Guards', 17),
             ('BobbyBrown', 'Point Guards', 29),
-            ('user1', 'Allstars', 1),
-            ('user1', 'Allstars', 2),
-            ('user1', 'Allstars', 3),
-            ('user1', 'Allstars', 4),
-            ('user1', 'Allstars', 10),
-            ('user1', 'Allstars', 12),
-            ('user1', 'Allstars', 16);
+            ('AaronAndrews', 'Allstars', 1),
+            ('AaronAndrews', 'Allstars', 2),
+            ('AaronAndrews', 'Allstars', 3),
+            ('AaronAndrews', 'Allstars', 4),
+            ('AaronAndrews', 'Allstars', 10),
+            ('AaronAndrews', 'Allstars', 12),
+            ('AaronAndrews', 'Allstars', 16);
     """
     conn.execute(insertUserWatchLists)
     conn.commit()
