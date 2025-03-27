@@ -26,10 +26,6 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import { getPlayersTable } from "../services/api";
 
-const CustomTextField = ({ val, setVal }) => {
-  <input type="text" value={val} onInput={(e) => setVal(e.target.value)} />;
-};
-
 const Home = () => {
   const [playerSearch, setPlayerSearch] = useState("");
   const [posFilter, setPosFilter] = useState("");
@@ -66,16 +62,6 @@ const Home = () => {
   useEffect(() => {
     fetchPlayerTable();
   }, [fetchPlayerTable]);
-
-  function debounceInput(value, timeout) {
-    var timer = 0;
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        setPlayerSearch(value);
-      }, timeout);
-    };
-  }
 
   if (loading) {
     return (
