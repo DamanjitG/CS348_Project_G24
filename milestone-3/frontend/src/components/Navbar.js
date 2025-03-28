@@ -64,6 +64,17 @@ const Navbar = () => {
 				>
 					Custom Player
 				</Button>
+				<Button
+					color="inherit"
+					component={RouterLink}
+					to="/most-watched"
+					sx={{
+						mx: 1,
+						fontWeight: location.pathname === "/most-watched" ? "bold" : "normal",
+					}}
+				>
+					most-watched
+				</Button>
 			</Toolbar>
 		</AppBar>
 	);
