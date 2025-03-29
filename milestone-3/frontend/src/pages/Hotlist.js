@@ -26,7 +26,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import { getMostWatched } from "../services/api";
 
-const MostWatchedTable = ({ username }) => {
+const Hotlist = ({ username }) => {
   // const [playerSearch, setPlayerSearch] = useState("");
   // const [posFilter, setPosFilter] = useState("");
   // const [orderByCol, setOrderByCol] = useState("fantasy");
@@ -199,4 +199,4 @@ const MostWatchedTable = ({ username }) => {
   );
 };
 
-export default MostWatchedTable;
+export default Hotlist;

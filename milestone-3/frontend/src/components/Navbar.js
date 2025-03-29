@@ -67,13 +67,13 @@ const Navbar = () => {
 				<Button
 					color="inherit"
 					component={RouterLink}
-					to="/most-watched"
+					to="/hotlist"
 					sx={{
 						mx: 1,
-						fontWeight: location.pathname === "/most-watched" ? "bold" : "normal",
+						fontWeight: location.pathname === "/hotlist" ? "bold" : "normal",
 					}}
 				>
-					most-watched
+					Hotlist
 				</Button>
 			</Toolbar>
 		</AppBar>

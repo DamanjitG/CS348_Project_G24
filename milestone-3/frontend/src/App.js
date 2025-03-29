@@ -11,7 +11,7 @@ import Watchlist from './pages/Watchlist';
 import Home from './pages/Home';
 import Login from './components/Login';
 import CustomPlayerForm from './pages/CustomPlayer';
-import MostWatchedTable from './pages/MostWatched';
+import Hotlist from './pages/Hotlist';
 
 const theme = createTheme({
   palette: {
@@ -40,7 +40,7 @@ function App() {
               <Route path='/' element={<Home user={username} />} />
               <Route path='/custom' element={<CustomPlayerForm username={username} />} />
               <Route path='/watchlist' element={<Watchlist username={username} />} />
-              <Route path='/most-watched' element={<MostWatchedTable username={username} />} />
+              <Route path='/hotlist' element={<Hotlist username={username} />} />
             </Routes>
           </div>{' '}
         </>
