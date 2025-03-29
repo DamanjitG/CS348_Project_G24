@@ -24,9 +24,9 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import SortIcon from "@mui/icons-material/Sort";
 import SearchIcon from "@mui/icons-material/Search";
 
-import { getMostWatched } from "../services/api";
+import { getSuggested } from "../services/api";
 
-const Hotlist = ({ username }) => {
+const Suggested = ({ username }) => {
   // const [playerSearch, setPlayerSearch] = useState("");
   // const [posFilter, setPosFilter] = useState("");
   // const [orderByCol, setOrderByCol] = useState("fantasy");
@@ -37,10 +37,10 @@ const Hotlist = ({ username }) => {
 
   const [loading, setLoading] = useState(true);
 
-  const fetchWatchedTable = useCallback(async () => {
+  const fetchSuggested = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await getMostWatched();
+      const response = await getSuggested(username);
 
       if (response.success) {
         setPlayerData(response.players || []);
@@ -55,8 +55,8 @@ const Hotlist = ({ username }) => {
   }, []);
 
   useEffect(() => {
-    fetchWatchedTable();
-  }, [fetchWatchedTable]);
+    fetchSuggested();
+  }, [fetchSuggested]);
 
   if (loading) {
     return (
@@ -68,7 +68,7 @@ const Hotlist = ({ username }) => {
   return (
     <div>
       <Typography variant="h4" component="h1" gutterBottom>
-        Most Watched Players
+        You may like...
       </Typography>
       {/* <TextField
         autoFocus
@@ -137,29 +137,6 @@ const Hotlist = ({ username }) => {
                   )} */}
                 </TableCell>
                 <TableCell align="right">
-                  <>Watchers</>
-                  {/* {orderByCol !== "fantasy" && (
-                    <IconButton
-                      onClick={(e) => {
-                        setDir("desc");
-                        setOrderByCol("fantasy");
-                      }}
-                    >
-                      <SortIcon />
-                    </IconButton>
-                  )}
-                  {orderByCol === "fantasy" && dir === "desc" && (
-                    <IconButton onClick={(e) => setDir("asc")}>
-                      <ArrowDownwardIcon />
-                    </IconButton>
-                  )}
-                  {orderByCol === "fantasy" && dir === "asc" && (
-                    <IconButton onClick={(e) => setDir("desc")}>
-                      <ArrowUpwardIcon />
-                    </IconButton>
-                  )} */}
-                </TableCell>
-                <TableCell align="right">
                   <>Fantasy Points</>
                   {/* {orderByCol !== "fantasy" && (
                     <IconButton
@@ -187,9 +164,8 @@ const Hotlist = ({ username }) => {
             <TableBody>
               {playerdata.map((player) => (
                 <TableRow>
-                  <TableCell>{player.label}</TableCell>                  
+                  <TableCell>{player.label}</TableCell>
                   <TableCell>{player.team}</TableCell>
-                  <TableCell align="right">{player.watchers}</TableCell>
                   <TableCell align="right">{player.fantasy}</TableCell>
                 </TableRow>
               ))}
@@ -231,4 +207,4 @@ const Hotlist = ({ username }) => {
   );
 };
 
-export default Hotlist;
+export default Suggested;

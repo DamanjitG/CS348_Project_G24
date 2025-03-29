@@ -144,3 +144,13 @@ export const getMostWatched = async () => {
     return { success: false, error: error.message };
   }
 };
+
+export const getSuggested = async (username) => {
+  try {
+    const response = await api.get(`/suggested/${username}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching most-watched list:", error);
+    return { success: false, error: error.message };
+  }
+};

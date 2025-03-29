@@ -75,6 +75,17 @@ const Navbar = () => {
 				>
 					Hotlist
 				</Button>
+				<Button
+					color="inherit"
+					component={RouterLink}
+					to="/suggested"
+					sx={{
+						mx: 1,
+						fontWeight: location.pathname === "/suggested" ? "bold" : "normal",
+					}}
+				>
+					Suggested
+				</Button>
 			</Toolbar>
 		</AppBar>
 	);
