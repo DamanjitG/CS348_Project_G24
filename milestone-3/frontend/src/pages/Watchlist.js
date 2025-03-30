@@ -49,6 +49,7 @@ const Watchlist = ({ username }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [warningMessage, setWarningMessage] = useState(null);
   const [openCreateDialog, setOpenCreateDialog] = useState(false);
   const [openAddPlayerDialog, setOpenAddPlayerDialog] = useState(false);
   const [newWatchlistName, setNewWatchlistName] = useState("");
@@ -189,16 +190,19 @@ const Watchlist = ({ username }) => {
         watchlistName,
         newPlayerId
       );
-
+  
+      setOpenAddPlayerDialog(false);
+      
       if (response.success) {
         setSuccessMessage("Player added to watchlist");
-        setOpenAddPlayerDialog(false);
         setNewPlayerId("");
         setTimeout(() => setSuccessMessage(null), 3000);
         fetchWatchlist();
         fetchBestTeam();
+      } else if (response.error?.includes("already in watchlist")) {
+        setWarningMessage("This player is already in your watchlist");
+        setTimeout(() => setWarningMessage(null), 3000);
       } else {
-        setOpenAddPlayerDialog(false);
         setError(response.error || "Failed to add player to watchlist");
       }
     } catch (err) {
@@ -335,6 +339,16 @@ const Watchlist = ({ username }) => {
         </Alert>
       )}
 
+      {warningMessage && (
+        <Alert
+          severity="warning"
+          sx={{ mb: 2 }}
+          onClose={() => setWarningMessage(null)}
+        >
+          {warningMessage}
+        </Alert>
+      )}
+
       <Typography variant="h5" component="h2" sx={{ mb: 2 }}>
         Best Team for Watchlist: {watchlistName}
       </Typography>
@@ -383,7 +397,7 @@ const Watchlist = ({ username }) => {
         </TableContainer>
       )}
 
-      <br></br>
+      <br />
 
       <Typography variant="h5" component="h2" sx={{ mb: 2 }}>
         Watchlist: {watchlistName}
