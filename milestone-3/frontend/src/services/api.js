@@ -46,6 +46,9 @@ export const addToWatchlist = async (username, watchlistName, playerId) => {
     return response.data;
   } catch (error) {
     console.error("Error adding to watchlist:", error);
+    if (error.response?.data) {
+      return error.response.data;
+    }
     return { success: false, error: error.message };
   }
 };
