@@ -45,6 +45,8 @@ def playersList():
         pid = row[0]
         name = row[1]
         creator = row[2]
-        out.append({"id": pid, "label": f"{name} ({creator if creator else "NBA"}-{pid})"})
+        # out.append({"id": pid, "label": name})
+        thecreator = creator if creator else "NBA"
+        out.append({"id": pid, "label": f"{name} ({thecreator}-{pid})"})
 
     return jsonify({"success": True, "players":out})

@@ -11,6 +11,8 @@ import Watchlist from './pages/Watchlist';
 import Home from './pages/Home';
 import Login from './components/Login';
 import CustomPlayerForm from './pages/CustomPlayer';
+import Hotlist from './pages/Hotlist';
+import Suggested from './pages/Suggested';
 
 const theme = createTheme({
   palette: {
@@ -39,6 +41,8 @@ function App() {
               <Route path='/' element={<Home user={username} />} />
               <Route path='/custom' element={<CustomPlayerForm username={username} />} />
               <Route path='/watchlist' element={<Watchlist username={username} />} />
+              <Route path='/hotlist' element={<Hotlist username={username} />} />
+              <Route path='/suggested' element={<Suggested username={username} />} />
             </Routes>
           </div>{' '}
         </>
