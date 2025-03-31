@@ -72,10 +72,11 @@ const CustomPlayerForm = ({ username }) => {
       setSuccessMessage('Added player successfully')
       e.target.reset()
       getReqCustomPlayers()
-      setTimeout(() => setSuccessMessage(null), 3000)
+      setTimeout(() => setSuccessMessage(null), 5000)
     } else {
       console.error('failed to add custom player', response.error)
       setFailMessage('Could not add player: Invalid stats')
+      setTimeout(() => setFailMessage(null), 5000)
     }
   }
 
