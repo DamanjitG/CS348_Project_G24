@@ -42,18 +42,18 @@ def initialize_db(conn, sample=False):
     createPlayersTable = f""" CREATE TABLE players (
                         pid INTEGER PRIMARY KEY NOT NULL,
                         name TEXT NOT NULL,
-                        age INT,
+                        age INT CHECK (age >= 18),
                         team TEXT,
                         pos VARCHAR(2) CHECK( pos IN ({", ".join(positions)}) ) NOT NULL,
-                        g INT,
-                        mp DOUBLE,
+                        g INT CHECK (g >= 0),
+                        mp DOUBLE CHECK (mp >= 0),
                         fg DOUBLE CHECK (fg >= 0),
                         fga DOUBLE,
                         threept DOUBLE CHECK (threept >= 0),
                         threepta DOUBLE,
                         ft DOUBLE CHECK (ft >= 0),
-                        orb DOUBLE,
-                        drb DOUBLE,
+                        orb DOUBLE CHECK (orb >= 0),
+                        drb DOUBLE CHECK (drb >= 0),
                         trb DOUBLE CHECK (trb >= 0),
                         ast DOUBLE CHECK (ast >= 0),
                         stl DOUBLE CHECK (stl >= 0),
@@ -65,7 +65,7 @@ def initialize_db(conn, sample=False):
                         creator VARCHAR(20),
                         FOREIGN KEY(creator) REFERENCES users(username),
                         CHECK (trb IS NULL OR orb+drb > trb - 0.2 AND orb+drb < trb + 0.2)
-                        CHECK (threepta IS NULL OR threepta >= threept)
+                        CHECK (threepta IS NULL OR (threepta >= threept))
                         CHECK (fga IS NULL OR (fga >= fg))
                     );
                 """

@@ -10,6 +10,7 @@ import { addCustomToPlayer, getCustomPlayers } from '../services/custom'
 
 const CustomPlayerForm = ({ username }) => {
   const [successMessage, setSuccessMessage] = useState(null)
+  const [failMessage, setFailMessage] = useState(null)
 
   const [customPlayers, setcustomPlayers] = useState([])
 
@@ -74,6 +75,7 @@ const CustomPlayerForm = ({ username }) => {
       setTimeout(() => setSuccessMessage(null), 3000)
     } else {
       console.error('failed to add custom player', response.error)
+      setFailMessage('Could not add player: Invalid stats')
     }
   }
 
@@ -87,6 +89,12 @@ const CustomPlayerForm = ({ username }) => {
       {successMessage && (
         <Alert severity='success' sx={{ mb: 2 }} onClose={() => setSuccessMessage(null)}>
           {successMessage}
+        </Alert>
+      )}
+
+      {failMessage && (
+        <Alert severity='error' sx={{ mb: 2 }} onClose={() => setFailMessage(null)}>
+          {failMessage}
         </Alert>
       )}
 
