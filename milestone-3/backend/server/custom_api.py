@@ -11,7 +11,7 @@ def add_custom_player():
     age = data.get("age")
     team = data.get("team")
     pos = data.get("pos")
-    gp = data.get("gp")
+    gp = data.get("gamesPlayed")
     ppg = data.get("ppg")
     ast = data.get("ast")
     rpg = data.get("rpg")
