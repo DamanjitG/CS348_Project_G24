@@ -161,6 +161,7 @@ const CustomPlayerForm = ({ username }) => {
             <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("trb")}>RPG {sortType === 'trb' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
             <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("stl")}>SPG {sortType === 'stl' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
             <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("blk")}>BPG {sortType === 'blk' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
+            <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("fantasy")}>Fantasy {sortType === 'fantasy' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody onClick={() => setSort("")}>
@@ -174,6 +175,7 @@ const CustomPlayerForm = ({ username }) => {
               <TableCell align='right'>{player.trb}</TableCell>
               <TableCell align='right'>{player.stl}</TableCell>
               <TableCell align='right'>{player.blk}</TableCell>
+              <TableCell align='right'>{ ((player.threept * 3) + (player.fg * 2) + (player.ft * 1) + (player.trb * 1.2) + (player.ast * 1.5) + (player.stl * 2) + (player.tov * -1) + (player.pf * -1)).toFixed(1)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
