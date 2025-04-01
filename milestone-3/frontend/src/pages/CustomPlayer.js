@@ -152,7 +152,7 @@ const CustomPlayerForm = ({ username }) => {
     <TableContainer sx={{ fontSize: '3rem', mt: '50px' }}component={Paper} align="center">{username}'s Custom Players <span style={{ fontSize: '1rem' }}> - Click the blue stats to filter</span>
       <Table> 
         <TableHead align='right' >
-          <TableRow>
+          <TableRow sx={{ backgroundColor: "primary.light" }}>
             <TableCell>Name</TableCell>
             <TableCell>Team</TableCell>
             <TableCell>Position</TableCell>
@@ -161,6 +161,7 @@ const CustomPlayerForm = ({ username }) => {
             <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("trb")}>RPG {sortType === 'trb' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
             <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("stl")}>SPG {sortType === 'stl' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
             <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("blk")}>BPG {sortType === 'blk' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
+            <TableCell align='right' sx={{color: "blue", cursor: "pointer"}} onClick={() => setSort("fantasy")}>Fantasy {sortType === 'fantasy' ? (sortDir === 'desc' ? <ArrowDownwardIcon /> : <ArrowUpwardIcon />) : ''}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody onClick={() => setSort("")}>
@@ -174,6 +175,7 @@ const CustomPlayerForm = ({ username }) => {
               <TableCell align='right'>{player.trb}</TableCell>
               <TableCell align='right'>{player.stl}</TableCell>
               <TableCell align='right'>{player.blk}</TableCell>
+              <TableCell align='right'>{ (player.fantasy).toFixed(1)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
