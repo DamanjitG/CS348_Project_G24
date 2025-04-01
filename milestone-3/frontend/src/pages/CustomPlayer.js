@@ -152,7 +152,7 @@ const CustomPlayerForm = ({ username }) => {
     <TableContainer sx={{ fontSize: '3rem', mt: '50px' }}component={Paper} align="center">{username}'s Custom Players <span style={{ fontSize: '1rem' }}> - Click the blue stats to filter</span>
       <Table> 
         <TableHead align='right' >
-          <TableRow>
+          <TableRow sx={{ backgroundColor: "primary.light" }}>
             <TableCell>Name</TableCell>
             <TableCell>Team</TableCell>
             <TableCell>Position</TableCell>
