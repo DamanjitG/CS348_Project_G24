@@ -190,9 +190,9 @@ const Watchlist = ({ username }) => {
         watchlistName,
         newPlayerId
       );
-  
+
       setOpenAddPlayerDialog(false);
-      
+
       if (response.success) {
         setSuccessMessage("Player added to watchlist");
         setNewPlayerId("");
@@ -427,6 +427,7 @@ const Watchlist = ({ username }) => {
                 <TableCell align="right">PPG</TableCell>
                 <TableCell align="right">APG</TableCell>
                 <TableCell align="right">RPG</TableCell>
+                <TableCell align="right">Fantasy</TableCell>
                 <TableCell align="center">Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -441,6 +442,7 @@ const Watchlist = ({ username }) => {
                   <TableCell align="right">
                     {player.rebounds_per_game}
                   </TableCell>
+                  <TableCell align="right">{player.fantasy}</TableCell>
                   <TableCell align="center">
                     <IconButton
                       color="error"
