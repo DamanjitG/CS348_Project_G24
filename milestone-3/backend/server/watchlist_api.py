@@ -14,7 +14,7 @@ def get_user_watchlist(username, watchlist_name):
 
         query = """
         SELECT p.pid as player_id, p.name, p.team, p.pos as position, 
-               p.pts as points_per_game, p.ast as assists_per_game, p.trb as rebounds_per_game
+               p.pts as points_per_game, p.ast as assists_per_game, p.trb as rebounds_per_game, p.fantasy as fantasy
         FROM watchlist w
         JOIN players p ON w.pid = p.pid
         WHERE w.username = ? AND w.watchlist_name = ?
