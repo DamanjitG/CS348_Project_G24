@@ -86,7 +86,7 @@ def initialize_db(conn, sample=False):
         FOR EACH ROw 
         BEGIN 
                 UPDATE players
-                SET fantasy = ROUND((threept * 3) + (fg * 2) + (ft * 1) + (trb + 1.2) + (ast * 1.5) + (blk * 2) + (stl * 2) + (tov * -1) + (pf * -1), 2);
+                SET fantasy = ROUND((threept * 3) + (fg * 2) + (ft * 1) + (trb * 1.2) + (ast * 1.5) + (blk * 2) + (stl * 2) + (tov * -1) + (pf * -1), 2);
         END;
         """
     conn.execute(insertTriggerSql)
@@ -98,7 +98,7 @@ def initialize_db(conn, sample=False):
         FOR EACH ROw 
         BEGIN 
                 UPDATE players
-                SET fantasy =  ROUND((threept * 3) + (fg * 2) + (ft * 1) + (trb + 1.2) + (ast * 1.5) + (blk * 2) + (stl * 2) + (tov * -1) + (pf * -1), 2);
+                SET fantasy =  ROUND((threept * 3) + (fg * 2) + (ft * 1) + (trb * 1.2) + (ast * 1.5) + (blk * 2) + (stl * 2) + (tov * -1) + (pf * -1), 2);
         END;
         """
     conn.execute(updateTriggerSql)
