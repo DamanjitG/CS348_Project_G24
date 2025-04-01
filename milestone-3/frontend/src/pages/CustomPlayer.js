@@ -175,7 +175,7 @@ const CustomPlayerForm = ({ username }) => {
               <TableCell align='right'>{player.trb}</TableCell>
               <TableCell align='right'>{player.stl}</TableCell>
               <TableCell align='right'>{player.blk}</TableCell>
-              <TableCell align='right'>{ ((player.threept * 3) + (player.fg * 2) + (player.ft * 1) + (player.trb * 1.2) + (player.ast * 1.5) + (player.stl * 2) + (player.tov * -1) + (player.pf * -1)).toFixed(1)}</TableCell>
+              <TableCell align='right'>{ (player.fantasy).toFixed(1)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
