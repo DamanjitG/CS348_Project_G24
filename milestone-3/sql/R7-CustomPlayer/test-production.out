@@ -8,22 +8,22 @@ Rows affected: 1
 
 -- Return all custom players
 Query returned 2 row(s)
-pid, name, age, team, pos, g, mp, fg, fga, fgp, threept, threepta, efgp, ft, fta, ftp, orb, drb, trb, ast, stl, blk, tov, pf, pts, creator
-(1000, 'Luka Lakers', 25, 'LAL', 'SG', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 42.0, 'DataBaseLover123')
-(1001, 'Bron Bron', 23, 'LAL', 'SF', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 45.0, 'DataBaseLover123')
+pid, name, age, team, pos, g, pts, ast, trb, stl, blk, tov, threept, fg, pf, ft, creator
+(1000, 'Luka Lakers', 25, 'LAL', 'SG', 42, 29.4, 7.5, 6.2, 1.7, 0.8, 2.1, 3.2, 7.1, 2.5, 7.2, 'BobbyBrown')
+(1001, 'Bron Bron', 40, 'LAL', 'SF', 81, 31.2, 9.3, 10.2, 1.3, 1.9, 1.4, 2.7, 9.7, 2.9, 6.2, 'AaronAndrews')
 
 -- Return custom player with pid 1000: 
 Query returned 1 row(s)
-pid, name, age, team, pos, g, mp, fg, fga, fgp, threept, threepta, efgp, ft, fta, ftp, orb, drb, trb, ast, stl, blk, tov, pf, pts, creator
-(1000, 'Luka Lakers', 25, 'LAL', 'SG', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 42.0, 'DataBaseLover123')
+pid, name, age, team, pos, g, pts, ast, trb, stl, blk, tov, threept, fg, pf, ft, creator
+(1000, 'Luka Lakers', 25, 'LAL', 'SG', 42, 29.4, 7.5, 6.2, 1.7, 0.8, 2.1, 3.2, 7.1, 2.5, 7.2, 'BobbyBrown')
 
 -- Return custom players with the lowest point scorers at the top
 Query returned 2 row(s)
-pid, name, age, team, pos, g, mp, fg, fga, fgp, threept, threepta, efgp, ft, fta, ftp, orb, drb, trb, ast, stl, blk, tov, pf, pts, creator
-(1000, 'Luka Lakers', 25, 'LAL', 'SG', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 42.0, 'DataBaseLover123')
-(1001, 'Bron Bron', 23, 'LAL', 'SF', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 45.0, 'DataBaseLover123')
+pid, name, age, team, pos, g, pts, ast, trb, stl, blk, tov, threept, fg, pf, ft, creator
+(1000, 'Luka Lakers', 25, 'LAL', 'SG', 42, 29.4, 7.5, 6.2, 1.7, 0.8, 2.1, 3.2, 7.1, 2.5, 7.2, 'BobbyBrown')
+(1001, 'Bron Bron', 40, 'LAL', 'SF', 81, 31.2, 9.3, 10.2, 1.3, 1.9, 1.4, 2.7, 9.7, 2.9, 6.2, 'AaronAndrews')
 
 -- Return all customer players with position SF
 Query returned 2 row(s)
-pid, name, age, team, pos, g, mp, fg, fga, fgp, threept, threepta, efgp, ft, fta, ftp, orb, drb, trb, ast, stl, blk, tov, pf, pts, creator
-(1001, 'Bron Bron', 23, 'LAL', 'SF', 42, 42.5, 15.0, 20.0, 75.0, 4.0, 6.0, 80.0, 8.0, 10.0, 80.0, 4.0, 5.0, 9.0, 7.0, 2.0, 1.0, 3.0, 2.0, 45.0, 'DataBaseLover123')
+pid, name, age, team, pos, g, pts, ast, trb, stl, blk, tov, threept, fg, pf, ft, creator
+(1001, 'Bron Bron', 40, 'LAL', 'SF', 81, 31.2, 9.3, 10.2, 1.3, 1.9, 1.4, 2.7, 9.7, 2.9, 6.2, 'AaronAndrews')
