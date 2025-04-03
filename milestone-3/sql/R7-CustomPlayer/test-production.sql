@@ -1,8 +1,8 @@
 -- Inserts a custom player to the DB
 INSERT INTO players (
-    pid, name, age, team, pos, g, mp, fg, fga, fgp,
-    threept, threepta, efgp, ft, fta, ftp,
-    orb, drb, trb, ast, stl, blk, tov, pf, pts, creator
+    pid, name, age, team, pos, g,
+    pts, ast, trb, stl, blk, tov, 
+    threept, fg, pf, ft, creator 
 )
 VALUES (
     1000,                   
@@ -10,62 +10,44 @@ VALUES (
     25,                     
     'LAL',                  
     'SG',                   
-    42,                     
-    42.5,                   
-    15,                     
-    20,                     
-    75.0,                   
-    4,                      
-    6,                      
-    80.0,                   
-    8,                     
-    10,                     
-    80.0,                   
-    4,
-    5,
-    9, 
-    7,         
-    2,                  
-    1,
-    3,                     
-    2,                     
-    42,                     
-    'DataBaseLover123'         
+    42,
+    29.4,
+    7.5,
+    6.2,
+    1.7,
+    0.8,
+    2.1,
+    3.2,
+    7.1,
+    2.5,
+    7.2,                             
+    'BobbyBrown'         
 );
 
 -- Inserts a custom player to the DB
 INSERT INTO players (
-    pid, name, age, team, pos, g, mp, fg, fga, fgp,
-    threept, threepta, efgp, ft, fta, ftp,
-    orb, drb, trb, ast, stl, blk, tov, pf, pts, creator
+    pid, name, age, team, pos, g,
+    pts, ast, trb, stl, blk, tov, 
+    threept, fg, pf, ft, creator 
 )
 VALUES (
     1001,                   
     'Bron Bron',          
-    23,                     
+    40,                     
     'LAL',                  
     'SF',                   
-    42,                     
-    42.5,                   
-    15,                     
-    20,                     
-    75.0,                   
-    4,                      
-    6,                      
-    80.0,                   
-    8,                     
-    10,                     
-    80.0,                   
-    4,
-    5,
-    9, 
-    7,         
-    2,                  
-    1,
-    3,                     
-    2,                     
-    45,                     
-    'DataBaseLover123'         
+    81,
+    31.2,
+    9.3,
+    10.2,
+    1.3,
+    1.9,
+    1.4,
+    2.7,
+    9.7,
+    2.9,
+    6.2,                             
+    'AaronAndrews'         
 );
 
 
